@@ -27,8 +27,8 @@ class UserController extends BaseController {
     const { ctx } = this;
     // 如果参数错误，会自动返回，不用自己判断
     ctx.validate(ctx.rule.createUserRequest);
-    // const { username, email, password, captcha } = ctx.request.body;
-    const { username, email, password } = ctx.request.body;
+    // const { username, password, captcha } = ctx.request.body;
+    const { username, password } = ctx.request.body;
     //   if (captcha.toLocaleLowerCase() !== ctx.session.captcha.toLocaleLowerCase()) {
     //     this.error('验证码错误');
     //   } else {
@@ -37,8 +37,7 @@ class UserController extends BaseController {
     }
     const user = {
       username,
-      email,
-      password: md5(password + HashSalt),
+      password: md5(`${password}.${HashSalt}`),
     };
 
     try {

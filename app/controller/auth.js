@@ -21,7 +21,7 @@ class AuthController extends BaseController {
     const user = await ctx.model.User.findOne({
       where: {
         username,
-        password: md5(password + HashSalt),
+        password: md5(`${password}.${HashSalt}`),
       },
     });
     // 登录成功返回token、用户名
