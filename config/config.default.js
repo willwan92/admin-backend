@@ -43,18 +43,16 @@ module.exports = (appInfo) => {
   };
 
   config.sequelize = {
-    dialect: 'mysql',
-    host: '127.0.0.1',
-    port: 3306,
-    database: 'admin_default',
-    username: 'root',
-    password: '123456',
+    dialect: 'sqlite',
+    // database: '../database/admin_default.db',
+    database: '/usr/local/conf/admin_default.db',
   };
 
   config.cluster = {
     listen: {
       port: 7002,
-      hostname: '127.0.0.1',
+      hostname: '100.100.100.251',
+      //   hostname: '127.0.0.1',
     },
   };
 
