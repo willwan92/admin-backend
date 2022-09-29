@@ -44,15 +44,14 @@ module.exports = (appInfo) => {
 
   config.sequelize = {
     dialect: 'sqlite',
-    // database: '../database/admin_default.db',
-    database: '/usr/local/conf/admin_default.db',
+    storage: '/usr/local/conf/admin_default.db',
   };
 
   config.cluster = {
     listen: {
       port: 7002,
-      hostname: '100.100.100.251',
-      //   hostname: '127.0.0.1',
+      //   hostname: '100.100.100.251',
+      hostname: '127.0.0.1',
     },
   };
 
