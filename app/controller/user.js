@@ -64,17 +64,21 @@ class UserController extends BaseController {
    * @summary 获取用户信息
    * @description 获取用户详细信息
    * @router get /users/{id}
-   * @request path integer id 用户id
+   * @request path string *id 用户id
    * @response 200 userDetailResponse successed
    */
   async get() {
     const { ctx } = this;
-    const { userId } = ctx.request.query;
-    if (!userId) {
+    const { id } = ctx.params;
+    if (!id) {
       this.error('参数错误');
     } else {
-      const user = await ctx.model.User.findByPk(userId);
-      this.success(user);
+      const user = await ctx.model.User.findByPk(id);
+      if (!user) {
+        this.error('查询的数据不存在');
+      } else {
+        this.success(user);
+      }
     }
   }
 }

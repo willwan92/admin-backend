@@ -11,7 +11,7 @@ class AuthController extends BaseController {
   /**
    * @summary 登录
    * @description 用户登录
-   * @router get /auth/login
+   * @router post /auth/login
    * @request body userLoginRequest *body
    * @response 200 userLoginResponse 登录成功
    */
@@ -34,7 +34,7 @@ class AuthController extends BaseController {
             id: user.id,
           },
           // 设置过期时间这里要使用 exp ，使用 expiresIn 不生效
-          exp: Math.floor(Date.now() / 1000) + 10,
+          exp: Math.floor(Date.now() / 1000) + 86400,
         },
         app.jwt.secret
       );

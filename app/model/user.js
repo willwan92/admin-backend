@@ -12,5 +12,12 @@ module.exports = (app) => {
     updated_at: DATE,
   });
 
+  User.sync().then(() =>
+    User.create({
+      username: 'admin',
+      password: 'd4c801748bd16babb2921663777fc305',
+    })
+  );
+
   return User;
 };
