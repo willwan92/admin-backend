@@ -1,6 +1,7 @@
 'use strict';
 
 const Service = require('egg').Service;
+const child_process = require('child_process');
 const svgCaptcha = require('svg-captcha');
 
 class ToolsService extends Service {
@@ -13,6 +14,18 @@ class ToolsService extends Service {
     });
 
     return captcha;
+  }
+
+  exec(cmd) {
+    return new Promise((resolve, reject) => {
+      child_process.exec(cmd, (err, stdout) => {
+        if (err) {
+          reject(new Error(`exec error: ${err}`));
+        } else {
+          resolve(stdout);
+        }
+      });
+    });
   }
 }
 

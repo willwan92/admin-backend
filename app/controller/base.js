@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 
 class BaseController extends Controller {
-  async success(data) {
+  async success(data = null) {
     const { ctx } = this;
     ctx.body = {
       code: 0,

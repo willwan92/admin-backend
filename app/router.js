@@ -11,6 +11,9 @@ module.exports = (app) => {
   router.get('/auth/captcha', controller.auth.captcha);
   router.post('/users', controller.user.create);
   router.get('/users/:id', jwt, controller.user.get);
+  router.delete('/users/:id', controller.user.del);
   router.get('/users', controller.user.query);
   router.get('/home/systemMonitor', controller.home.systemMonitor);
+  router.get('/home/productInfo', controller.home.productInfo);
+  router.get('/home/interfaceMonitor', controller.home.interfaceMonitor);
 };

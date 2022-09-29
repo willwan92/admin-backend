@@ -81,6 +81,32 @@ class UserController extends BaseController {
       }
     }
   }
+
+  /**
+   * @summary 删除用户
+   * @description
+   * @router delete /users/{id}
+   * @request path string *id 用户id
+   * @response 200 baseResponse successed
+   */
+  async del() {
+    const { ctx } = this;
+    const { id } = ctx.params;
+    if (!id) {
+      this.error('参数错误');
+    } else {
+      const user = await ctx.model.User.destroy({
+        where: {
+          id,
+        },
+      });
+      if (!user) {
+        this.error('操作的数据不存在');
+      } else {
+        this.success();
+      }
+    }
+  }
 }
 
 module.exports = UserController;

@@ -14,18 +14,16 @@ class HomeController extends BaseController {
    * @response 200 systemMonitorResponse successed
    */
   async systemMonitor() {
-    child_process.exec('/usr/local/bin/system_monitor', (err, stdout) => {
-      if (err) {
-        return this.error('系统错误，请稍后再试！');
-      }
-
-      try {
-        const data = JSON.parse(stdout);
-        this.success(data);
-      } catch (err) {
-        return this.error('系统错误，请稍后再试！');
-      }
-    });
+    try {
+      const stdout = await this.service.tools.exec(
+        '/usr/local/bin/system_monitor'
+      );
+      const data = JSON.parse(stdout);
+      this.success(data);
+    } catch (err) {
+      console.log(err);
+      this.error('系统错误，请稍后再试！');
+    }
   }
 
   /**
@@ -35,18 +33,16 @@ class HomeController extends BaseController {
    * @response 200 productInfoResponse successed
    */
   async productInfo() {
-    child_process.exec('/usr/local/bin/product_info', (err, stdout) => {
-      if (err) {
-        return this.error('系统错误，请稍后再试！');
-      }
-
-      try {
-        const data = JSON.parse(stdout);
-        this.success(data);
-      } catch (err) {
-        return this.error('系统错误，请稍后再试！');
-      }
-    });
+    try {
+      const stdout = await this.service.tools.exec(
+        '/usr/local/bin/product_info'
+      );
+      const data = JSON.parse(stdout);
+      this.success(data);
+    } catch (err) {
+      console.log(err);
+      this.error('系统错误，请稍后再试！');
+    }
   }
 
   /**
@@ -56,18 +52,16 @@ class HomeController extends BaseController {
    * @response 200 interfaceMonitorResponse successed
    */
   async interfaceMonitor() {
-    child_process.exec('/usr/local/bin/interface_monitor', (err, stdout) => {
-      if (err) {
-        return this.error('系统错误，请稍后再试！');
-      }
-
-      try {
-        const data = JSON.parse(stdout);
-        this.success(data);
-      } catch (err) {
-        return this.error('系统错误，请稍后再试！');
-      }
-    });
+    try {
+      const stdout = await this.service.tools.exec(
+        '/usr/local/bin/interface_monitor'
+      );
+      const data = JSON.parse(stdout);
+      this.success(data);
+    } catch (err) {
+      console.log(err);
+      this.error('系统错误，请稍后再试！');
+    }
   }
 }
 
