@@ -63,6 +63,25 @@ class HomeController extends BaseController {
       this.error('系统错误，请稍后再试！');
     }
   }
+
+  /**
+   * @summary 算法自测试
+   * @description
+   * @router get /home/algTest
+   * @response 200 algTestResponse successed
+   */
+   async algTest() {
+    try {
+      const stdout = await this.service.tools.exec(
+        '/usr/local/bin/algtest'
+      );
+      const data = JSON.parse(stdout);
+      this.success(data);
+    } catch (err) {
+      console.log(err);
+      this.error('系统错误，请稍后再试！');
+    }
+  }
 }
 
 module.exports = HomeController;

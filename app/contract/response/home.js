@@ -15,6 +15,14 @@ module.exports = {
     product_sn: { type: 'string', description: '产品序列号' },
     system_time: { type: 'string', description: '系统运行时间' },
   },
+  algTestResponse: {
+    card: { type: 'string', description: '加密卡状态' },
+    SM1: { type: 'string', description: 'SM1算法正确性' },
+    SM2: { type: 'string', description: 'SM2算法正确性' },
+    SM3: { type: 'string', description: 'SM3算法正确性' },
+    SM4: { type: 'string', description: 'SM4算法正确性' },
+    random: { type: 'string', description: '随机数质量' },
+  },
   interfaceMonitorResponse: {
     interfaces: { type: 'array', itemType: 'interfaceMonitor' },
   },
