@@ -3,7 +3,7 @@
 module.exports = {
   baseResponse: {
     code: { type: 'integer', required: true, example: 0 },
-    data: { type: 'object' },
+    result: { type: 'object' },
     message: { type: 'string', example: '成功' },
   },
 };

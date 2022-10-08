@@ -7,7 +7,7 @@ class BaseController extends Controller {
     const { ctx } = this;
     ctx.body = {
       code: 0,
-      data,
+      result: data,
     };
   }
 
