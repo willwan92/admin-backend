@@ -56,7 +56,20 @@ class UserController extends BaseController {
    */
   async query() {
     const { ctx } = this;
-    const user = await ctx.model.User.findAll();
+    const user = await ctx.model.User.findAll({
+      attributes: [
+        'id',
+        'username',
+        'nickname',
+        'role',
+        'phone',
+        'email',
+        'key',
+        'gender',
+        'status',
+        'remarks',
+      ],
+    });
     this.success(user);
   }
 
@@ -73,7 +86,20 @@ class UserController extends BaseController {
     if (!id) {
       this.error('参数错误');
     } else {
-      const user = await ctx.model.User.findByPk(id);
+      const user = await ctx.model.User.findByPk(id, {
+        attributes: [
+          'id',
+          'username',
+          'nickname',
+          'role',
+          'phone',
+          'email',
+          'key',
+          'gender',
+          'status',
+          'remarks',
+        ],
+      });
       if (!user) {
         this.error('查询的数据不存在');
       } else {
