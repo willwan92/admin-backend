@@ -42,19 +42,6 @@ module.exports = (appInfo) => {
     // myAppName: 'egg',
   };
 
-  config.sequelize = {
-    dialect: 'sqlite',
-    storage: '/usr/local/conf/admin_default.db',
-  };
-
-  config.cluster = {
-    listen: {
-      port: 7002,
-      //   hostname: '100.100.100.251',
-      hostname: '127.0.0.1',
-    },
-  };
-
   return {
     ...config,
     ...userConfig,
