@@ -23,7 +23,6 @@ module.exports = ({ app }) => {
         return ctx.body;
       }
       const ret = await app.jwt.verify(token, app.config.jwt.secret);
-      console.log('中间件解密token信息', ret);
       await next();
     } catch (error) {
       if (error.name === 'TokenExpiredError') {

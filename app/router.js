@@ -13,7 +13,7 @@ module.exports = (app) => {
   router.get('/users/:id', jwt, controller.user.get);
   router.delete('/users/:id', controller.user.del);
   router.get('/users', controller.user.query);
-  router.get('/home/systemMonitor', controller.home.systemMonitor);
+  router.get('/home/systemMonitor', jwt, controller.home.systemMonitor);
   router.get('/home/productInfo', controller.home.productInfo);
   router.get('/home/interfaceMonitor', controller.home.interfaceMonitor);
   router.get('/home/algTest', controller.home.algTest);
