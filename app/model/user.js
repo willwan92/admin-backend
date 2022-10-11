@@ -47,7 +47,7 @@ module.exports = (app) => {
     updated_at: DATE,
   });
 
-  User.sync().then(async () => {
+  User.sync({ alter: true }).then(async () => {
     const user = await User.findOne({
       where: {
         username: 'admin',
