@@ -14,5 +14,11 @@ module.exports = {
       description: '密码',
       example: 'u123456',
     },
+    captcha: {
+      type: 'string',
+      required: true,
+      description: '验证码,不区分大小写',
+      example: '23fa',
+    }
   },
 };

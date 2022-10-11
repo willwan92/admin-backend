@@ -17,7 +17,13 @@ class AuthController extends BaseController {
    */
   async login() {
     const { ctx, app } = this;
-    const { username, password } = ctx.request.body;
+    const { username, password, captcha } = ctx.request.body;
+    const sessionCaptcha = ctx.session.captcha;
+
+    if (!captcha || (captcha && captcha.toLocaleLowerCase() !== sessionCaptcha)) {
+      return this.error('验证码错误！');
+    }
+
     const user = await ctx.model.User.findOne({
       where: {
         username,
@@ -34,7 +40,7 @@ class AuthController extends BaseController {
             id: user.id,
           },
           // 设置过期时间这里要使用 exp ，使用 expiresIn 不生效
-          exp: Math.floor(Date.now() / 1000) + 86400,
+          exp: Math.floor(Date.now() / 1000) + 600,
         },
         app.jwt.secret
       );
@@ -43,6 +49,9 @@ class AuthController extends BaseController {
         username,
         userId: user.id,
       });
+
+      // 调用 rotateCsrfSecret 刷新用户的 CSRF token
+      ctx.rotateCsrfSecret();
     } else {
       this.error('用户名或密码错误');
     }
@@ -57,7 +66,7 @@ class AuthController extends BaseController {
   async captcha() {
     const { ctx } = this;
     const captcha = this.service.tools.captcha();
-    ctx.session.captcha = captcha.text;
+    ctx.session.captcha = captcha.text.toLocaleLowerCase();
     ctx.response.type = 'image/svg+xml';
     ctx.body = captcha.data;
   }
