@@ -23,10 +23,5 @@ module.exports = () => {
 
   return {
     ...config,
-    security: {
-      csrf: {
-        enable: false,
-      },
-    },
   };
 };

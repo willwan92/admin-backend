@@ -10,7 +10,6 @@ module.exports = () => {
   const config = (exports = {});
   config.sequelize = {
     dialect: 'sqlite',
-    storage: '../admin_default.db',
   };
 
   config.cluster = {
@@ -22,10 +21,5 @@ module.exports = () => {
 
   return {
     ...config,
-    security: {
-      csrf: {
-        enable: false,
-      },
-    },
   };
 };
