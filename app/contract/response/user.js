@@ -1,8 +1,11 @@
 'use strict';
 
+const { paginationResponse } = require('./base');
+
 module.exports = {
   queryUserResponse: {
-    users: { type: 'array', itemType: 'user' },
+    data: { type: 'array', itemType: 'user' },
+    ...paginationResponse,
   },
   userDetailResponse: {
     id: { type: 'string', description: 'id 唯一键' },

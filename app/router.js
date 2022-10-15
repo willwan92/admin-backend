@@ -12,6 +12,10 @@ module.exports = (app) => {
   router.post('/users', controller.user.create);
   router.get('/users/:id', jwt, controller.user.get);
   router.delete('/users/:id', controller.user.del);
+  router.put('/users/:id', controller.user.update);
+  router.patch('/users/:id/status', controller.user.updateStatus);
+  router.patch('/users/:id/password', controller.user.updatePassword);
+  router.patch('/users/:id/role', controller.user.updateRole);
   router.get('/users', controller.user.query);
   router.get('/home/systemMonitor', jwt, controller.home.systemMonitor);
   router.get('/home/productInfo', controller.home.productInfo);

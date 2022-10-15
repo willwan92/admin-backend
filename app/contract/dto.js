@@ -12,6 +12,11 @@ module.exports = {
     gender: { type: 'string', description: '性别' },
     status: { type: 'string', description: '状态' },
     remarks: { type: 'string', description: '备注' },
+    created_at: {
+      type: 'string',
+      description: '创建时间',
+      example: '2022-10-15T06:47:21.127Z',
+    },
   },
   interfaceMonitor: {
     if_name: { type: 'string', description: '接口名称' },
