@@ -40,7 +40,7 @@ class AuthController extends BaseController {
             id: user.id,
           },
           // 设置过期时间这里要使用 exp ，使用 expiresIn 不生效
-          exp: Math.floor(Date.now() / 1000) + 600,
+          exp: Math.floor(Date.now() / 1000) + 3600 * 4,
         },
         app.jwt.secret
       );
