@@ -12,7 +12,6 @@ module.exports = (app) => {
     },
     nickname: {
       type: STRING(32),
-      uiique: true,
       allowNull: false,
     },
     role: {
@@ -31,7 +30,7 @@ module.exports = (app) => {
       comment: 'key编码',
     },
     gender: {
-      type: ENUM('female', 'male', 'other'),
+      type: ENUM('female', 'male', 'unknown'),
     },
     status: {
       type: ENUM('enable', 'disable'),

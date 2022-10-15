@@ -16,6 +16,15 @@ class UserController extends BaseController {
     return user;
   }
 
+  // 待开发或修改接口
+  // 查询（修改）：名称，手机号，状态，创建时间范围
+  // 修改状态
+  // 修改密码
+  // 分配角色
+  // 绑定ukey
+  // 解绑ukey
+
+
   /**
    * @summary 新建用户
    * @description 新建用户
@@ -27,11 +36,7 @@ class UserController extends BaseController {
     const { ctx } = this;
     // 如果参数错误，会自动返回，不用自己判断
     ctx.validate(ctx.rule.createUserRequest);
-    // const { username, password, captcha } = ctx.request.body;
     const { username, password } = ctx.request.body;
-    //   if (captcha.toLocaleLowerCase() !== ctx.session.captcha.toLocaleLowerCase()) {
-    //     this.error('验证码错误');
-    //   } else {
     if (await this.checkUsername(username)) {
       return this.error('用户名已存在，请修改后再试');
     }
@@ -42,9 +47,9 @@ class UserController extends BaseController {
 
     try {
       await ctx.model.User.create(user);
-      this.message('新建成功');
+      this.message('新增用户成功');
     } catch (error) {
-      this.error('新建失败，请稍后再试');
+      this.error('新增失败，请稍后再试');
     }
   }
 
@@ -52,11 +57,15 @@ class UserController extends BaseController {
    * @summary 用户列表
    * @description 查询用户列表
    * @router get /users
+   * @request body queryUsersRequest *body
    * @response 200 queryUserResponse successed
    */
   async query() {
     const { ctx } = this;
     const user = await ctx.model.User.findAll({
+      where: {
+        
+      },
       attributes: [
         'id',
         'username',
