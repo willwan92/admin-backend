@@ -10,7 +10,7 @@ class ToolsService extends Service {
       size: 4,
       noise: 2,
       color: true,
-      background: 'pink',
+      background: '#ccc',
     });
 
     return captcha;
