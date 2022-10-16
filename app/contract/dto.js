@@ -1,6 +1,18 @@
 'use strict';
 
 module.exports = {
+  log: {
+    date: {
+      type: 'string',
+      description: '时间',
+      example: '2022-10-15 6:47:21',
+    },
+    user: { type: 'string', description: '用户（管理员）名称' },
+    sip: { type: 'string', description: '源（客户端）IP地址' },
+    pri: { type: 'number', description: '日志级别' },
+    type: { type: 'number', description: '日志类型' },
+    msg: { type: 'string', description: '日志信息' },
+  },
   user: {
     id: { type: 'string', description: 'id 唯一键' },
     username: { type: 'string', description: '用户名' },

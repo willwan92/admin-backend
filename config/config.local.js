@@ -9,7 +9,16 @@ module.exports = () => {
    **/
   const config = (exports = {});
   config.sequelize = {
-    dialect: 'sqlite',
+    datasources: [
+      {
+        dialect: 'sqlite',
+      },
+      {
+        dialect: 'sqlite',
+        delegate: 'logModel',
+        baseDir: 'logModel',
+      },
+    ]
   };
 
   config.cluster = {

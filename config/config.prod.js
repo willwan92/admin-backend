@@ -10,8 +10,18 @@ module.exports = () => {
   const config = (exports = {});
 
   config.sequelize = {
-    dialect: 'sqlite',
-    storage: '/usr/local/conf/admin_default.db',
+    datasources: [
+      {
+        dialect: 'sqlite',
+        storage: '/usr/local/conf/admin_default.db',
+      },
+      {
+        dialect: 'sqlite',
+        delegate: 'logModel',
+        baseDir: 'logModel',
+        storage: '/usr/local/conf/logs.db',
+      },
+    ]
   };
 
   config.cluster = {
