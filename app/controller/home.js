@@ -21,7 +21,6 @@ class HomeController extends BaseController {
       const data = JSON.parse(stdout);
       this.success(data);
     } catch (err) {
-      console.log(err);
       this.error('系统错误，请稍后再试！');
     }
   }
@@ -40,7 +39,6 @@ class HomeController extends BaseController {
       const data = JSON.parse(stdout);
       this.success(data);
     } catch (err) {
-      console.log(err);
       this.error('系统错误，请稍后再试！');
     }
   }
@@ -59,7 +57,6 @@ class HomeController extends BaseController {
       const data = JSON.parse(stdout);
       this.success(data);
     } catch (err) {
-      console.log(err);
       this.error('系统错误，请稍后再试！');
     }
   }
@@ -78,7 +75,6 @@ class HomeController extends BaseController {
       const data = JSON.parse(stdout);
       this.success(data);
     } catch (err) {
-      console.log(err);
       this.error('系统错误，请稍后再试！');
     }
   }
