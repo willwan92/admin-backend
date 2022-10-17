@@ -9,6 +9,7 @@ module.exports = (app) => {
 
   // 登录认证
   router.post('/auth/login', controller.auth.login);
+  router.post('/auth/logout', controller.auth.logout);
   router.get('/auth/captcha', controller.auth.captcha);
 
   // 用户

@@ -52,7 +52,7 @@ class AuthController extends BaseController {
         userId: user.id,
       });
 
-      syslog(2, 6, hostip, username, '登錄成功');
+      syslog(2, 6, hostip, username, '登录成功');
 
       // 调用 rotateCsrfSecret 刷新用户的 CSRF token
       ctx.rotateCsrfSecret();
@@ -60,6 +60,22 @@ class AuthController extends BaseController {
       syslog(2, 4, hostip, username, '用户名或密码错误');
       this.error('用户名或密码错误');
     }
+  }
+
+  /**
+   * @summary 退出登录
+   * @description 
+   * @router post /auth/login
+   * @request body userLogoutRequest *body
+   * @response 200 baseResponse 退出登录成功
+   */
+   async logout() {
+    const { ctx } = this;
+    const { username } = ctx.request.body;
+    const hostip = ctx.request.ip;
+    const syslog = ctx.service.tools.syslog;
+    this.message('退出成功');
+    syslog(2, 4, hostip, username, '退出登录');
   }
 
   /**
