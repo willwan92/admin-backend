@@ -20,7 +20,7 @@ class AuthController extends BaseController {
     const { username, password, captcha } = ctx.request.body;
     const sessionCaptcha = ctx.session.captcha;
     const hostip = ctx.request.ip;
-    const exec = ctx.service.tools.exec;
+    const syslog = ctx.service.tools.syslog;
 
     if (!captcha || (captcha && captcha.toLocaleLowerCase() !== sessionCaptcha)) {
       return this.error('验证码错误！');
@@ -52,22 +52,12 @@ class AuthController extends BaseController {
         userId: user.id,
       });
 
-      try {
-        const ret = await exec(`/usr/local/bin/syslog 2 6 ${hostip} ${username} 登录成功`)
-        console.log(ret)
-      } catch (error) {
-        console.log(error)
-      }
+      syslog(2, 6, hostip, username, '登錄成功');
 
       // 调用 rotateCsrfSecret 刷新用户的 CSRF token
       ctx.rotateCsrfSecret();
     } else {
-      try {
-        const ret = await exec(`/usr/local/bin/syslog 2 6 ${hostip} ${username} 登录密码错误`)
-        console.log(ret)
-      } catch (error) {
-        console.log(error)
-      }
+      syslog(2, 4, hostip, username, '用户名或密码错误');
       this.error('用户名或密码错误');
     }
   }
