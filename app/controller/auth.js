@@ -65,7 +65,7 @@ class AuthController extends BaseController {
   /**
    * @summary 退出登录
    * @description 
-   * @router post /auth/login
+   * @router post /auth/logout
    * @request body userLogoutRequest *body
    * @response 200 baseResponse 退出登录成功
    */
