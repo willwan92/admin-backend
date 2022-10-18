@@ -32,8 +32,12 @@ class AuthController extends BaseController {
         password: md5(`${password}.${HashSalt}`),
       },
     });
-    // 登录成功返回token、用户名
+
     if (user) {
+      if (user.status !== 'enable') {
+        return this.error('该用户已停用');
+      }
+
       // 生成token
       const token = app.jwt.sign(
         {
@@ -46,12 +50,14 @@ class AuthController extends BaseController {
         },
         app.jwt.secret
       );
+      // 登录成功返回token、用户名
       this.success({
         token,
         username,
         userId: user.id,
       });
 
+      // 记录日志
       syslog(2, 6, hostip, username, '登录成功');
 
       // 调用 rotateCsrfSecret 刷新用户的 CSRF token
