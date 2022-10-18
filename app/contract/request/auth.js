@@ -21,4 +21,12 @@ module.exports = {
       example: '23fa',
     }
   },
+  userLogoutRequest: {
+    username: {
+      type: 'string',
+      required: true,
+      description: '用户名',
+      example: 'user1',
+    },
+  },
 };
