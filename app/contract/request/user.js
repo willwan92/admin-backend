@@ -1,6 +1,17 @@
 'use strict';
 
-const { PWD_REGEXP, MOBILE_REGEXP } = require('../regexp.js');
+const { PWD_REGEXP, MOBILE_REGEXP, EMAIL_REGEXP } = require('../regexp.js');
+
+/**
+ * 参数验证规则书写说明：
+ * type：类型，必需
+ * required：是否必填，必需（值为false是也要写，否则参数校验无法通过）
+ * min：最小长度
+ * max：最大长度
+ * description：参数描述
+ * example：参数示例
+ * values：参数为枚举类型时，规定可选的值
+ */
 
 module.exports = {
   createUserRequest: {
@@ -29,23 +40,21 @@ module.exports = {
     phone: {
       type: 'string',
       required: false,
-      allowEmpty: true,
       format: MOBILE_REGEXP,
       description: '手机号',
+      example: '18812342134',
     },
     email: {
-      type: 'email',
-      required: false,
-      allowEmpty: true,
-      description: '邮箱',
-    },
-    key: {
       type: 'string',
       required: false,
-      description: 'key编码',
+      format: EMAIL_REGEXP,
+      max: 64,
+      description: '邮箱',
+      example: '18812342134@163.com',
     },
     gender: {
       type: 'string',
+      required: false,
       values: ['female', 'male', 'unknown'],
       description: '性别。female：女, male：男, unknown：未知',
       example: 'female',
@@ -59,6 +68,7 @@ module.exports = {
     },
     remarks: {
       type: 'string',
+      required: false,
       max: 128,
       description: '备注',
     },
@@ -91,18 +101,21 @@ module.exports = {
     phone: {
       type: 'string',
       required: false,
-      allowEmpty: true,
       format: MOBILE_REGEXP,
       description: '手机号',
+      example: '18812342134',
     },
     email: {
-      type: 'email',
+      type: 'string',
       required: false,
-      allowEmpty: true,
+      format: EMAIL_REGEXP,
+      max: 64,
       description: '邮箱',
+      example: '18812342134@163.com',
     },
     gender: {
       type: 'string',
+      required: false,
       values: ['female', 'male', 'unknown'],
       description: '性别。female：女, male：男, unknown：未知',
       example: 'female',
@@ -116,6 +129,7 @@ module.exports = {
     },
     remarks: {
       type: 'string',
+      required: false,
       max: 128,
       description: '备注',
     },
