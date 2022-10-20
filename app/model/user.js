@@ -17,7 +17,7 @@ module.exports = (app) => {
     role: {
       type: ENUM('system', 'business', 'audit'),
       allowNull: false,
-      comment: 'system: 系统管理员; business: 业务管理员; audit: 审计管理员',
+      comment: 'system: 系统管理员; business: 业务管理员; audit: 审计管理员; default: 出厂默认管理员;',
     },
     phone: {
       type: STRING(11),
@@ -46,7 +46,7 @@ module.exports = (app) => {
     updated_at: DATE,
   });
 
-  User.sync({ alter: true }).then(async () => {
+  User.sync().then(async () => {
     const user = await User.findOne({
       where: {
         username: 'admin',
@@ -57,7 +57,7 @@ module.exports = (app) => {
       User.create({
         username: 'admin',
         nickname: '系统管理员',
-        role: 'system',
+        role: 'default',
         password: 'd4c801748bd16babb2921663777fc305',
       });
     }
