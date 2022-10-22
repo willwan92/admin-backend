@@ -22,6 +22,12 @@ module.exports = (app) => {
   router.patch('/users/:id/role', controller.user.updateRole);
   router.get('/users', controller.user.query);
 
+  // 管理卡
+  router.post('/mngcard', controller.mngcard.create);
+  router.patch('/mngcard/password', controller.mngcard.updatePassword);
+  router.post('/mngcard/auth', controller.mngcard.auth);
+  router.post('/mngcard/logout', controller.mngcard.logout);
+
   // 首页
   router.get('/home/systemMonitor', jwt, controller.home.systemMonitor);
   router.get('/home/productInfo', controller.home.productInfo);
@@ -30,5 +36,5 @@ module.exports = (app) => {
 
   // 日志
   router.get('/logs', controller.log.query);
-  
+
 };
