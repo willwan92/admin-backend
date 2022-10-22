@@ -6,7 +6,6 @@ const BaseController = require('./base');
  * @controller mngcard 管理卡接口
  */
 class MngcardController extends BaseController {
-  // create() 参数：name, keyser, password ukey的PIN码
   /**
    * @summary 添加管理卡
    * @description
@@ -17,12 +16,7 @@ class MngcardController extends BaseController {
   create() {
     const { ctx } = this;
     ctx.validate(ctx.rule.createMngcardRequest);
-    const { name, keyser, password } = ctx.request.body;
-    ctx.service.tools.execSync('/usr/local/bin/mngcard add', [
-      name,
-      keyser,
-      password,
-    ]);
+    ctx.service.mngcard.create();
     this.message('添加管理卡成功');
   }
 
@@ -36,12 +30,7 @@ class MngcardController extends BaseController {
   updatePassword() {
     const { ctx } = this;
     ctx.validate(ctx.rule.updateMngcardPwdRequest);
-    const { keyser, oldPassword, newPassword } = ctx.request.body;
-    ctx.service.tools.execSync('/usr/local/bin/mngcard set', [
-      keyser,
-      oldPassword,
-      newPassword,
-    ]);
+    ctx.service.mngcard.updatePassword();
     this.message('修改密码成功');
   }
 
@@ -55,11 +44,7 @@ class MngcardController extends BaseController {
   auth() {
     const { ctx } = this;
     ctx.validate(ctx.rule.authMngcardPwdRequest);
-    const { keyser, password } = ctx.request.body;
-    ctx.service.tools.execSync('/usr/local/bin/mngcard auth', [
-      keyser,
-      password,
-    ]);
+    ctx.service.mngcard.auth();
     this.message('管理卡认证成功');
   }
 
@@ -71,8 +56,8 @@ class MngcardController extends BaseController {
    */
   logout() {
     const { ctx } = this;
-    ctx.service.tools.execSync('/usr/local/bin/mngcard clear login');
-    this.message('修改密码成功');
+    ctx.service.mngcard.logout();
+    this.message('管理卡退出登录成功');
   }
 }
 

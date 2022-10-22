@@ -30,24 +30,6 @@ class ToolsService extends Service {
   }
 
   /**
-   * 同步执行命令
-   * @param {String} cmd 要执行的命令
-   * @param {Array} args 执行命令的参数
-   * @return {any} 成功返回0或命令输出，失败记录日志
-   */
-  execSync(cmd, args = []) {
-    const ret = child_process.spawnSync(cmd, args, { encoding: 'utf-8' });
-    if (ret.status !== 0) {
-      // 记录应用日志
-      this.ctx.logger.error(ret.error);
-      // 抛出错误，交给给异常处理函数处理
-      this.ctx.throw(500, '服务器内部错误');
-    } else {
-      return ret.stdout || 0;
-    }
-  }
-
-  /**
    * 记录系统日志
    * @param {int} type 日志类型：2（设备管理日志）
    * @param {int} level 日志级别：4 warning（警告）6 info（通知）
