@@ -28,6 +28,12 @@ module.exports = (app) => {
   router.post('/mngcard/auth', controller.mngcard.auth);
   router.post('/mngcard/logout', controller.mngcard.logout);
 
+  // 设备密钥初始化
+  router.post('/initKey', controller.initKey.initKey);
+
+  // 证书初始化
+  router.post('/initCa', controller.initCa.initCa);
+
   // 首页
   router.get('/home/systemMonitor', jwt, controller.home.systemMonitor);
   router.get('/home/productInfo', controller.home.productInfo);
@@ -36,5 +42,4 @@ module.exports = (app) => {
 
   // 日志
   router.get('/logs', controller.log.query);
-
 };
