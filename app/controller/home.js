@@ -1,7 +1,6 @@
 'use strict';
 
 const BaseController = require('./base');
-const child_process = require('child_process');
 
 /**
  * @controller home 首页接口
@@ -14,15 +13,10 @@ class HomeController extends BaseController {
    * @response 200 systemMonitorResponse successed
    */
   async systemMonitor() {
-    try {
-      const stdout = await this.service.tools.exec(
-        '/usr/local/bin/system_monitor'
-      );
-      const data = JSON.parse(stdout);
-      this.success(data);
-    } catch (err) {
-      this.error('系统错误，请稍后再试！');
-    }
+    const result = this.ctx.service.home.execHomeCmd(
+      '/usr/local/bin/system_monitor'
+    );
+    this.success(result);
   }
 
   /**
@@ -32,15 +26,10 @@ class HomeController extends BaseController {
    * @response 200 productInfoResponse successed
    */
   async productInfo() {
-    try {
-      const stdout = await this.service.tools.exec(
-        '/usr/local/bin/product_info'
-      );
-      const data = JSON.parse(stdout);
-      this.success(data);
-    } catch (err) {
-      this.error('系统错误，请稍后再试！');
-    }
+    const result = this.ctx.service.home.execHomeCmd(
+      '/usr/local/bin/product_info'
+    );
+    this.success(result);
   }
 
   /**
@@ -50,15 +39,10 @@ class HomeController extends BaseController {
    * @response 200 interfaceMonitorResponse successed
    */
   async interfaceMonitor() {
-    try {
-      const stdout = await this.service.tools.exec(
-        '/usr/local/bin/interface_monitor'
-      );
-      const data = JSON.parse(stdout);
-      this.success(data);
-    } catch (err) {
-      this.error('系统错误，请稍后再试！');
-    }
+    const result = this.ctx.service.home.execHomeCmd(
+      '/usr/local/bin/interface_monitor'
+    );
+    this.success(result);
   }
 
   /**
@@ -67,16 +51,9 @@ class HomeController extends BaseController {
    * @router get /home/algTest
    * @response 200 algTestResponse successed
    */
-   async algTest() {
-    try {
-      const stdout = await this.service.tools.exec(
-        '/usr/local/bin/algtest'
-      );
-      const data = JSON.parse(stdout);
-      this.success(data);
-    } catch (err) {
-      this.error('系统错误，请稍后再试！');
-    }
+  async algTest() {
+    const result = this.ctx.service.home.execHomeCmd('/usr/local/bin/algtest');
+    this.success(result);
   }
 }
 

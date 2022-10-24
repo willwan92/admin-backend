@@ -2,6 +2,7 @@
 
 const Service = require('egg').Service;
 const child_process = require('child_process');
+const svgCaptcha = require('svg-captcha');
 
 class BaseService extends Service {
   /**
@@ -14,22 +15,29 @@ class BaseService extends Service {
    * @return
    */
   async page(where, pageParams, table, attributes = null, model = 'model') {
-    const limit = pageParams.pageSize ? Number(pageParams.pageSize) : 10;
-    const offset = pageParams.pageNo ? (pageParams.pageNo - 1) * limit - 1 : 0;
+    try {
+      const limit = pageParams.pageSize ? Number(pageParams.pageSize) : 10;
+      const offset = pageParams.pageNo
+        ? (pageParams.pageNo - 1) * limit - 1
+        : 0;
 
-    const { count, rows } = await this.ctx[model][table].findAndCountAll({
-      where,
-      limit,
-      offset,
-      attributes,
-    });
+      const { count, rows } = await this.ctx[model][table].findAndCountAll({
+        where,
+        limit,
+        offset,
+        attributes,
+      });
 
-    return {
-      total: count,
-      data: rows,
-      pageNo: pageParams.pageNo || 1,
-      pageSize: pageParams.pageSize || 10,
-    };
+      return {
+        total: count,
+        data: rows,
+        pageNo: pageParams.pageNo || 1,
+        pageSize: pageParams.pageSize || 10,
+      };
+    } catch (error) {
+      this.ctx.logger.error(error);
+      this.ctx.throw(500, '服务器错误');
+    }
   }
 
   /**
@@ -47,6 +55,43 @@ class BaseService extends Service {
     }
 
     return result;
+  }
+
+  /**
+   * 记录系统日志
+   * @param {int} type 日志类型：2（设备管理日志）
+   * @param {int} level 日志级别：4 warning（警告）6 info（通知）
+   * @param {string} hostip 客户端主机IP
+   * @param {string} username 管理员名称
+   * @param {string} message 日志信息
+   * @return {any} 成功返回0或命令输出，失败记录日志
+   */
+  syslog(type, level, hostip, username, message) {
+    const ret = child_process.spawnSync(
+      '/usr/local/bin/syslog',
+      [type, level, hostip, username, message],
+      { encoding: 'utf-8' }
+    );
+    if (ret.status !== 0) {
+      this.ctx.logger.error(ret.error);
+      this.ctx.throw(500, '服务器内部错误');
+    } else {
+      return ret.stdout || 0;
+    }
+  }
+
+  /**
+   * 生成图片验证码
+   */
+  createCaptcha() {
+    const captcha = svgCaptcha.create({
+      size: 4,
+      noise: 2,
+      color: true,
+      background: '#ccc',
+    });
+
+    return captcha;
   }
 }
 
