@@ -14,7 +14,7 @@ class AuthController extends BaseController {
    */
   async login() {
     const { ctx } = this;
-    const params = ctx.ctx.request.body;
+    const params = ctx.request.body;
     ctx.validate(ctx.rule.userLoginRequest, params);
     const result = await ctx.service.auth.login(params);
     this.success(result);
@@ -29,7 +29,7 @@ class AuthController extends BaseController {
    */
   async logout() {
     const { ctx } = this;
-    const params = ctx.ctx.request.body;
+    const params = ctx.request.body;
     ctx.validate(ctx.rule.userLogoutRequest, params);
     ctx.service.auth.logout(params);
     this.message('退出成功');
@@ -43,7 +43,7 @@ class AuthController extends BaseController {
    */
   async captcha() {
     const { ctx } = this;
-    const captcha = ctx.service.captcha();
+    const captcha = ctx.service.auth.captcha();
     ctx.response.type = 'image/svg+xml';
     ctx.body = captcha.data;
   }
