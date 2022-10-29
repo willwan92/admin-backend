@@ -15,8 +15,9 @@ class InitCaController extends BaseController {
    */
   initCa() {
     const { ctx } = this;
-    ctx.validate(ctx.rule.initCaRequest);
-    ctx.service.initCa.init();
+    const params = ctx.request.body;
+    ctx.validate(ctx.rule.initCaRequest, params);
+    ctx.service.initCa.init(params);
     this.message('证书初始化成功');
   }
 }
