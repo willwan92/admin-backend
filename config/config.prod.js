@@ -21,6 +21,12 @@ module.exports = () => {
         baseDir: 'logModel',
         storage: '/usr/local/conf/logs.db',
       },
+      {
+        dialect: 'sqlite',
+        delegate: 'ipencModel',
+        baseDir: 'ipencModel',
+        storage: '/usr/local/conf/ipenc.db',
+      },
     ]
   };
 
@@ -35,7 +41,7 @@ module.exports = () => {
     ...config,
     security: {
       csrf: {
-        enable: true,
+        enable: false,
         headerName: 'x-csrf-token', // 通过 header 传递 CSRF token 的默认字段为 x-csrf-token
         cookieName: 'CSRFTOKEN', // Cookie 中的字段名，默认为 csrfToken
       },

@@ -1,6 +1,12 @@
 'use strict';
 
 module.exports = {
+  server: {
+    id: { type: 'string', description: '服务编号' },
+    ip: { type: 'string', description: '服务地址' },
+    port: { type: 'string', description: '服务端口' },
+    type: { type: 'string', description: '服务类型' },
+  },
   log: {
     date: {
       type: 'string',

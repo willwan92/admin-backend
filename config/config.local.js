@@ -18,6 +18,11 @@ module.exports = () => {
         delegate: 'logModel',
         baseDir: 'logModel',
       },
+      {
+        dialect: 'sqlite',
+        delegate: 'ipencModel',
+        baseDir: 'ipencModel',
+      },
     ]
   };
 
