@@ -7,8 +7,21 @@ class ServerService extends Service {
   async create(params) {
     const { ctx } = this;
     const cmd = '/usr/local/bin/kdmcserver';
-    const { id, ip, port, type } = params;
-    return ctx.service.base.execSync(cmd, ['add', id, ip, port, type]);
+    const { ip, port, type } = params;
+
+    // 模型若为下划线方式命名会自动转为大驼峰命名，使用模型时注意要使用对应的大驼峰命名
+    const server = await ctx.ipencModel.KdmcServer.create(params);
+    const result = ctx.service.base.execSync(cmd, [
+      'add',
+      server.id,
+      ip,
+      port,
+      type,
+    ]);
+
+    if (result.error) {
+      await server.destory();
+    }
   }
 
   // 查询服务
@@ -42,8 +55,16 @@ class ServerService extends Service {
       ctx.throw(433, '参数错误');
     }
 
+    const server = await ctx.ipencModel.KdmcServer.findByPk(id);
+    if (!server) {
+      ctx.throw(433, '操作的数据的数据不存在');
+    }
+
     const cmd = '/usr/local/bin/kdmcserver';
-    return ctx.service.base.execSync(cmd, ['del', id]);
+    const result = ctx.service.base.execSync(cmd, ['del', id]);
+    if (!result.error) {
+      return await server.destroy();
+    }
   }
 }
 

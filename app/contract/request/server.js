@@ -15,14 +15,6 @@ const { IPV4_REGEXP } = require('../regexp.js');
 
 module.exports = {
   createServerRequest: {
-    id: {
-      type: 'integer',
-      required: true,
-      min: 1,
-      max: 100,
-      description: '服务编号，输入1-100之间的整数',
-      example: 1,
-    },
     ip: {
       type: 'string',
       required: true,
