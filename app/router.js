@@ -22,6 +22,14 @@ module.exports = (app) => {
   router.patch('/users/:id/role', controller.user.updateRole);
   router.get('/users', controller.user.query);
 
+  // 接口IP
+  router.get('/interface/ip', controller.interface.ip);
+
+  // 服务管理
+  router.post('/servers', controller.server.create);
+  router.get('/servers', controller.server.query);
+  router.delete('/servers/:id', controller.server.del);
+
   // 管理卡
   router.post('/mngcard', controller.mngcard.create);
   router.patch('/mngcard/password', controller.mngcard.updatePassword);

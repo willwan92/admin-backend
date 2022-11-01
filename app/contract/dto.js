@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = {
+  interface: {
+    ip: { type: 'string', description: '接口IP' },
+  },
   server: {
     id: { type: 'string', description: '服务编号' },
     ip: { type: 'string', description: '服务地址' },
