@@ -10,6 +10,9 @@ class InterfaceService extends Service {
     let result = ctx.service.base.execSync(cmd);
     result = result && result.stdout && result.stdout.replace(/\n/g, '');
     result = result ? result.split(',') : [];
+    result = result.map((item) => ({
+      ip: item,
+    }));
     return result;
   }
 }
