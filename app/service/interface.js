@@ -8,6 +8,7 @@ class InterfaceService extends Service {
     const { ctx } = this;
     const cmd = '/usr/local/bin/sysip';
     let result = ctx.service.base.execSync(cmd);
+    result = result && result.stdout && result.stdout.replace(/\n/g, '');
     result = result ? result.split(',') : [];
     return result;
   }
