@@ -16,7 +16,7 @@ class ServerController extends BaseController {
   async create() {
     const { ctx } = this;
     // 参数校验，如果参数错误，会自动返回，不用自己判断
-    const params = ctx.query.body;
+    const params = ctx.request.body;
     ctx.validate(ctx.rule.createServerRequest, params);
     await ctx.service.server.create(params);
     this.message('添加服务成功');

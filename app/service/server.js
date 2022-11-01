@@ -6,7 +6,7 @@ class ServerService extends Service {
   // 添加服务
   async create(params) {
     const { ctx } = this;
-    const cmd = '/usr/local/bin/kdmcserve';
+    const cmd = '/usr/local/bin/kdmcserver';
     const { id, ip, port, type } = params;
     return ctx.service.base.execSync(cmd, ['add', id, ip, port, type]);
   }
@@ -42,7 +42,7 @@ class ServerService extends Service {
       ctx.throw(433, '参数错误');
     }
 
-    const cmd = '/usr/local/bin/kdmcserve';
+    const cmd = '/usr/local/bin/kdmcserver';
     return ctx.service.base.execSync(cmd, ['del', id]);
   }
 }

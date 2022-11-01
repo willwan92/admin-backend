@@ -16,12 +16,12 @@ const { IPV4_REGEXP } = require('../regexp.js');
 module.exports = {
   createServerRequest: {
     id: {
-      type: 'int',
+      type: 'integer',
       required: true,
       min: 1,
       max: 100,
       description: '服务编号，输入1-100之间的整数',
-      example: '1',
+      example: 1,
     },
     ip: {
       type: 'string',
@@ -31,21 +31,20 @@ module.exports = {
       example: '10.101.10.12',
     },
     port: {
-      type: 'int',
+      type: 'integer',
       required: true,
       min: 1,
       max: 65535,
-      description: '服务编号，输入1-100之间的整数',
-      example: '554',
+      description: '服务端口，输入1-65535之间的整数',
+      example: 554,
     },
     type: {
-      type: 'int',
+      type: 'integer',
       required: true,
-      min: 1,
-      max: 3,
-      values: [1, 2, 3],
-      description: '服务类型，1代表SDF(国标)接口，2代表pcks11接口，3代表CSP接口',
-      example: '1',
+      enum: [1, 2, 3],
+      description:
+        '服务类型，1代表SDF(国标)接口，2代表pcks11接口，3代表CSP接口',
+      example: 1,
     },
   },
 };
