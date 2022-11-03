@@ -36,6 +36,12 @@ module.exports = (app) => {
   router.patch('/adminips/:id', controller.adminip.update);
   router.delete('/adminips/:id', controller.adminip.del);
 
+  // 白名单
+  router.post('/whitelists', controller.whitelist.create);
+  router.get('/whitelists', controller.whitelist.query);
+  router.patch('/whitelists/:id', controller.whitelist.update);
+  router.delete('/whitelists/:id', controller.whitelist.del);
+
   // 管理卡
   router.post('/mngcard', controller.mngcard.create);
   router.patch('/mngcard/password', controller.mngcard.updatePassword);

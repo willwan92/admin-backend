@@ -1,8 +1,16 @@
 'use strict';
 
 module.exports = {
+  whitelist: {
+    id: { type: 'integer', description: 'ID' },
+    type: { type: 'integer', description: '类型' },
+    ip: { type: 'string', description: 'IP' },
+    port: { type: 'integer', description: '端口' },
+    protocol: { type: 'string', description: '协议' },
+    comment: { type: 'string', description: '备注' },
+  },
   adminip: {
-    id: { type: 'string', description: 'ID' },
+    id: { type: 'integer', description: 'ID' },
     ip: { type: 'string', description: '管理主机ip' },
     comment: { type: 'string', description: '备注' },
   },
@@ -10,7 +18,7 @@ module.exports = {
     ip: { type: 'string', description: '接口IP' },
   },
   server: {
-    id: { type: 'string', description: '服务编号' },
+    id: { type: 'integer', description: '服务编号' },
     ip: { type: 'string', description: '服务地址' },
     port: { type: 'string', description: '服务端口' },
     type: { type: 'string', description: '服务类型' },
@@ -28,7 +36,7 @@ module.exports = {
     msg: { type: 'string', description: '日志信息' },
   },
   user: {
-    id: { type: 'string', description: 'id 唯一键' },
+    id: { type: 'integer', description: 'id 唯一键' },
     username: { type: 'string', description: '用户名' },
     nickname: { type: 'string', description: '用户昵称' },
     role: { type: 'string', description: '用户角色' },
