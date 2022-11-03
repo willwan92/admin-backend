@@ -3,7 +3,7 @@
 const { paginationResponse } = require('./base');
 
 module.exports = {
-  queryAdminipResponse: {
+  queryWhitelistResponse: {
     data: { type: 'array', itemType: 'whitelist' },
     ...paginationResponse,
   },

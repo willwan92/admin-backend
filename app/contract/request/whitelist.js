@@ -12,7 +12,7 @@
  */
 
 module.exports = {
-  whiteListRequest: {
+  whitelistRequest: {
     type: {
       type: 'integer',
       required: true,
