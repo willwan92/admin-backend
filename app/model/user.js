@@ -7,7 +7,7 @@ module.exports = (app) => {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     username: {
       type: STRING(32),
-      uiique: true,
+      unique: true,
       allowNull: false,
     },
     nickname: {
@@ -46,10 +46,11 @@ module.exports = (app) => {
     updated_at: DATE,
   });
 
-  User.sync().then(async () => {
+  User.sync({ alter: true }).then(async () => {
     const user = await User.findOne({
       where: {
         username: 'admin',
+        role: 'default',
       },
     });
 

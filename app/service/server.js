@@ -57,7 +57,7 @@ class ServerService extends Service {
 
     const server = await ctx.ipencModel.KdmcServer.findByPk(id);
     if (!server) {
-      ctx.throw(433, '操作的数据的数据不存在');
+      ctx.throw(433, '操作的数据不存在');
     }
 
     const cmd = '/usr/local/bin/kdmcserver';
