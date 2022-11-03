@@ -1,6 +1,11 @@
 'use strict';
 
 module.exports = {
+  adminip: {
+    id: { type: 'string', description: 'ID' },
+    ip: { type: 'string', description: '管理主机ip' },
+    comment: { type: 'string', description: '备注' },
+  },
   interface: {
     ip: { type: 'string', description: '接口IP' },
   },

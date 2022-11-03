@@ -27,6 +27,12 @@ module.exports = () => {
         baseDir: 'ipencModel',
         storage: '/usr/local/conf/ipenc.db',
       },
+      {
+        dialect: 'sqlite',
+        delegate: 'configModel',
+        baseDir: '../app/models/configModel',
+        storage: '/usr/local/conf/configs.db',
+      },
     ]
   };
 
