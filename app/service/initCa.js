@@ -24,21 +24,17 @@ class InitKeyService extends Service {
       name,
       'cn',
       commonname,
-      'state',
-      state,
-      'city',
-      city,
-      'org',
-      organization,
-      'depart',
-      depart,
-      'email',
-      email,
       'lifetime',
       lifetime,
       'capasswd',
       password,
     ];
+
+    state && cmdParams.push('state', state);
+    city && cmdParams.push('city', city);
+    organization && cmdParams.push('org', organization);
+    depart && cmdParams.push('depart', depart);
+    email && cmdParams.push('email', email);
 
     const result = ctx.service.base.execSync(
       '/usr/local/bin/pkism2',
