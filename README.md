@@ -24,20 +24,22 @@ $ npm stop 停止服务
 
 ### 项目目录结构
 
-app：源代码
-    router.js 配置 URL 路由规则，具体参见 https://www.eggjs.org/zh-CN/basics/router
-    controller/* 控制器，用于解析用户的输入，处理后返回相应的结果，具体参见 https://www.eggjs.org/zh-CN/basics/controller
-    service/* 用于编写业务逻辑层，可选，建议使用，具体参见 https://www.eggjs.org/zh-CN/basics/service
-    middleware/* 用于编写中间件，可选，具体参见 https://www.eggjs.org/zh-CN/basics/middleware
-    model/* 用于定义默认数据库的模型，具体参见：https://github.com/eggjs/egg-sequelize 和 https://www.sequelize.cn/
-    logModel/* 用于定义logs数据库的模型
-    contract/* 用来定义请求参数和响应参数，用户参数校验和生成接口文档
+app目录：
 
-config: 配置文件
-    config.default.js: 默认配置
-    config.local.js: 开发环境运行配置
-    config.prod.js：生产环境运行配置
-    plugin.js: 用于配置需要加载的插件
+- app/router.js 配置 URL 路由规则，具体参见 https://www.eggjs.org/zh-CN/basics/router
+- app/controller/* 控制器，用于解析用户的输入，处理后返回相应的结果，具体参见 https://www.eggjs.org/zh-CN/basics/controller
+- app/service/* 用于编写业务逻辑层，可选，建议使用，具体参见 https://www.eggjs.org/zh-CN/basics/service
+- app/middleware/* 用于编写中间件，可选，具体参见 https://www.eggjs.org/zh-CN/basics/middleware
+- app/models/* 用于定义数据库的模型，具体参见：https://github.com/eggjs/egg-sequelize 和 https://www.sequelize.cn/
+- app/contract/* 用来定义请求参数和响应参数，用户参数校验和生成接口文档
+
+
+config目录：
+
+- config/config.default.js: 默认配置
+- config/config.local.js: 开发环境运行配置
+- config/config.prod.js：生产环境运行配置
+- config/plugin.js: 用于配置需要加载的插件
 
 ### 项目中使用的主要插件
 
