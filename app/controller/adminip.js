@@ -16,7 +16,7 @@ class AdminipController extends BaseController {
     const { ctx } = this;
     // 参数校验，如果参数错误，会自动返回，不用自己判断
     const params = ctx.request.body;
-    ctx.validate(ctx.rule.adminipRequest, params);
+    ctx.validate(ctx.rule.createAdminipRequest, params);
     await ctx.service.adminip.create(params);
     this.message('添加管理主机成功');
   }
@@ -25,7 +25,7 @@ class AdminipController extends BaseController {
    * @summary 修改管理主机
    * @description
    * @router patch /adminips/{id}
-   * @request path string *id 管理主机id
+   * @request path integer *id 管理主机id
    * @request body updateAdminipRequest *body
    * @response 200 baseResponse successed
    */
@@ -33,7 +33,7 @@ class AdminipController extends BaseController {
     const { ctx } = this;
     const id = ctx.params.id;
     const params = ctx.request.body;
-    ctx.validate(ctx.rule.adminipRequest, params);
+    ctx.validate(ctx.rule.updateAdminipRequest, params);
     await ctx.service.adminip.update(id, params);
     this.message('修改管理主机成功');
   }
@@ -58,14 +58,14 @@ class AdminipController extends BaseController {
   /**
    * @summary 删除管理主机
    * @description
-   * @router delete /adminips
-   * @request path string *ip 管理主机ip
+   * @router delete /adminips/{id}
+   * @request path integer *id 管理主机id
    * @response 200 baseResponse successed
    */
   async del() {
     const { ctx } = this;
-    const { ip } = ctx.params;
-    await ctx.service.adminip.del(ip);
+    const id = ctx.params.id;
+    await ctx.service.adminip.del(id);
     this.message('删除成功');
   }
 }

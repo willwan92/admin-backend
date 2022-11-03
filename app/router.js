@@ -30,6 +30,12 @@ module.exports = (app) => {
   router.get('/servers', controller.server.query);
   router.delete('/servers/:id', controller.server.del);
 
+  // 管理主机
+  router.post('/adminips', controller.adminip.create);
+  router.get('/adminips', controller.adminip.query);
+  router.patch('/adminips/:id', controller.adminip.update);
+  router.delete('/adminips/:id', controller.adminip.del);
+
   // 管理卡
   router.post('/mngcard', controller.mngcard.create);
   router.patch('/mngcard/password', controller.mngcard.updatePassword);

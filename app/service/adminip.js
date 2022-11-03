@@ -5,10 +5,20 @@ const Service = require('egg').Service;
 class AdminipService extends Service {
   async create(params) {
     const { ctx } = this;
-    const cmd = 'adminhost';
     const { ip, comment } = params;
-    const args = ['add', ip, comment || ''];
 
+    const object = await ctx.configModel.Adminip.findOne({
+      where: {
+        ip,
+      },
+    });
+
+    if (object) {
+      ctx.throw(433, `管理主机 ${ip} 已存在`);
+    }
+
+    const cmd = 'adminhost';
+    const args = ['add', ip, comment || ''];
     return ctx.service.base.execSync(cmd, args);
   }
 
@@ -52,23 +62,19 @@ class AdminipService extends Service {
     );
   }
 
-  async del(ip) {
+  async del(id) {
     const { ctx } = this;
-    if (!ip) {
+    if (!id) {
       ctx.throw(433, '参数错误');
     }
 
-    const object = await ctx.configModel.Adminip.findOne({
-      where: {
-        ip,
-      },
-    });
+    const object = await ctx.configModel.Adminip.findByPk(id);
 
     if (!object) {
       ctx.throw(433, '操作的数据不存在');
     }
 
-    const result = ctx.service.base.execSync('adminhost', ['del', object.id]);
+    const result = ctx.service.base.execSync('adminhost', ['del', object.ip]);
     if (!result.error) {
       return await object.destroy();
     }
