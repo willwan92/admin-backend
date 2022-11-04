@@ -16,7 +16,6 @@ module.exports = (app) => {
       },
       ip: {
         type: STRING(128),
-        unique: true,
         allowNull: false,
       },
       port: {

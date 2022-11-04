@@ -6,17 +6,6 @@ class WhitelistService extends Service {
   async create(params) {
     const { ctx } = this;
     const { type, ip, port, protocol, comment } = params;
-
-    const object = await ctx.configModel.Whitelist.findOne({
-      where: {
-        ip,
-      },
-    });
-
-    if (object) {
-      ctx.throw(433, `白名单 ${ip} 已存在`);
-    }
-
     const cmd = 'whitelist';
     const args = ['add', type, ip, port, protocol, comment || ''];
     return ctx.service.base.execSync(cmd, args);
