@@ -9,19 +9,27 @@ class BaseService extends Service {
    * 分页查询数据
    * @param where 查询参数 Object
    * @param pageParams 分页参数 { pageNo, pageSize }
-   * @param table 查询的表名 String
+   * @param modelName 模型名称 String
    * @param attributes 可选。要查询的属性（字段）Array
-   * @param model 可选。模型（数据库）名称 String
+   * @param delegate 可选。数据库对应的delegate名称 String
    * @return
    */
-  async page(where, pageParams, table, attributes = null, model = 'model') {
+  async page(
+    where,
+    pageParams,
+    modelName,
+    attributes = null,
+    delegate = 'model'
+  ) {
     try {
       const limit = pageParams.pageSize ? Number(pageParams.pageSize) : 10;
       const offset = pageParams.pageNo
         ? (pageParams.pageNo - 1) * limit - 1
         : 0;
 
-      const { count, rows } = await this.ctx[model][table].findAndCountAll({
+      const { count, rows } = await this.ctx[delegate][
+        modelName
+      ].findAndCountAll({
         where,
         limit,
         offset,

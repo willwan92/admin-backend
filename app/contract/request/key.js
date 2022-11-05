@@ -37,4 +37,13 @@ module.exports = {
       example: '1',
     },
   },
+  delKeyRequest: {
+    keytype: {
+      type: 'string',
+      required: true,
+      enum: ['sm1', 'sm2'],
+      description: '密钥类型：sm2（sm2密钥），sm1（对称密钥）',
+      example: 'sm1',
+    },
+  },
 };

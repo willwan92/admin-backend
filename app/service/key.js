@@ -26,23 +26,23 @@ class KeyService extends Service {
     const { keyindex, keytype, keylen } = params;
     const { model, addAction } = this.getKeyType(keytype);
 
-    const object = await ctx.configModel[model].findOne({
-      where: {
-        keyindex,
-      },
-    });
+    const object = await ctx.devinitModel[model].findByPk(keyindex);
 
     if (object) {
       ctx.throw(433, `密钥索引 ${keyindex} 已存在，请换一个重试`);
     }
 
-    if (addAction === 'insert' && !keylen) {
-      ctx.throw(433, '缺少参数 keylen');
+    let args = [addAction];
+    if (addAction === 'insert') {
+      if (!keylen) {
+        ctx.throw(433, '缺少参数 keylen');
+      }
+      args.push(keytype, keyindex, keylen);
+    } else {
+      args.push(keyindex);
     }
 
     const cmd = 'keymng';
-    const args = [addAction, keyindex, keytype];
-    addAction === 'insert' && args.push(keylen);
     return ctx.service.base.execSync(cmd, args);
   }
 
@@ -50,7 +50,6 @@ class KeyService extends Service {
     const { ctx } = this;
     const where = {};
     const { keyindex, keytype } = query;
-    where.keytype = keytype;
     query.keyindex && (where.keyindex = keyindex);
     const { model } = this.getKeyType(keytype);
 
@@ -65,28 +64,24 @@ class KeyService extends Service {
       pageParams,
       model,
       attrs,
-      'configModel'
+      'devinitModel'
     );
   }
 
-  async del(id, keytype) {
+  async del(keyindex, keytype) {
     const { ctx } = this;
-    if (!id) {
+    if (!keyindex) {
       ctx.throw(433, '参数错误：缺少密钥索引参数');
     }
     const { model, delAction } = this.getKeyType(keytype);
 
-    const object = await ctx.configModel[model].findOne({
-      where: {
-        keyindex: id,
-      },
-    });
+    const object = await ctx.devinitModel[model].findByPk(keyindex);
 
     if (!object) {
       ctx.throw(433, '操作的数据不存在');
     }
 
-    const result = ctx.service.base.execSync('keymng', [delAction, id]);
+    const result = ctx.service.base.execSync('keymng', [delAction, keyindex]);
     if (!result.error) {
       return await object.destroy();
     }

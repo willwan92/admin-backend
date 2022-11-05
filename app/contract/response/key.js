@@ -3,7 +3,7 @@
 const { paginationResponse } = require('./base');
 
 module.exports = {
-  queryAdminipResponse: {
+  queryKeyResponse: {
     data: { type: 'array', itemType: 'key' },
     ...paginationResponse,
   },

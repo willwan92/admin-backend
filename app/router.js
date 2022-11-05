@@ -30,6 +30,11 @@ module.exports = (app) => {
   router.get('/servers', controller.server.query);
   router.delete('/servers/:id', controller.server.del);
 
+  // 密钥管理
+  router.post('/keys', controller.key.create);
+  router.get('/keys', controller.key.query);
+  router.delete('/keys/:keyindex', controller.key.del);
+
   // 管理主机
   router.post('/adminips', controller.adminip.create);
   router.get('/adminips', controller.adminip.query);
