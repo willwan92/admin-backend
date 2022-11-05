@@ -26,7 +26,7 @@ module.exports = {
       min: 0,
       max: 1023,
       description: '密钥索引',
-      example: '1',
+      example: 1,
     },
     keylen: {
       type: 'integer',
@@ -34,7 +34,7 @@ module.exports = {
       min: 1,
       max: 32,
       description: '密钥长度，生成sm1或者sm4密钥是必传',
-      example: '1',
+      example: 1,
     },
   },
   delKeyRequest: {
