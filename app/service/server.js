@@ -31,6 +31,7 @@ class ServerService extends Service {
     const Op = ctx.app.Sequelize.Op;
     query.ip && (where.ip = { [Op.substring]: `${query.ip}` });
     query.port && (where.port = { [Op.substring]: `${query.port}` });
+    query.type && (where.type = { [Op.substring]: `${query.type}` });
     query.status && (where.status = query.status);
 
     const attrs = ['id', 'ip', 'port', 'type'];
