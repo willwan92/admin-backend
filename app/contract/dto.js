@@ -1,6 +1,10 @@
 'use strict';
 
 module.exports = {
+  key: {
+    keyindex: { type: 'integer', description: '密钥索引' },
+    keytype: { type: 'string', description: '密钥类型' },
+  },
   whitelist: {
     id: { type: 'integer', description: 'ID' },
     type: { type: 'integer', description: '类型' },

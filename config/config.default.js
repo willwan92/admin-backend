@@ -60,6 +60,12 @@ module.exports = (appInfo) => {
         baseDir: '../app/models/configModel',
         storage: '/usr/local/conf/configs.db',
       },
+      {
+        dialect: 'sqlite',
+        delegate: 'devinitModel',
+        baseDir: '../app/models/devinitModel',
+        storage: '/usr/local/conf/devinit.db',
+      },
     ],
   };
 
