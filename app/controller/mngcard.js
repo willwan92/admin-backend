@@ -43,7 +43,7 @@ class MngcardController extends BaseController {
    */
   auth() {
     const { ctx } = this;
-    ctx.validate(ctx.rule.authMngcardPwdRequest);
+    ctx.validate(ctx.rule.loginMngcardRequest);
     ctx.service.mngcard.login();
     this.message('管理卡登录成功');
   }

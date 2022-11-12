@@ -54,8 +54,8 @@ module.exports = {
       type: 'string',
       required: true,
       max: 32,
-      description: 'ukey的PIN码',
-      example: '',
+      description: 'ukey的PIN码，默认是 12345678',
+      example: '12345678',
     },
   },
 };
