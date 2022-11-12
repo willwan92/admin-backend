@@ -5,12 +5,13 @@ const Service = require('egg').Service;
 class MngcardService extends Service {
   create() {
     const { ctx } = this;
-    const { name, keyser, password } = ctx.request.body;
+    const { type, name, password, phone } = ctx.request.body;
     const result = ctx.service.base.execSync('/usr/local/bin/mngcard', [
       'add',
+      type,
       name,
-      keyser,
       password,
+      phone,
     ]);
 
     if (result.status !== 0) {
@@ -20,10 +21,9 @@ class MngcardService extends Service {
 
   updatePassword() {
     const { ctx } = this;
-    const { keyser, oldPassword, newPassword } = ctx.request.body;
+    const { oldPassword, newPassword } = ctx.request.body;
     const result = ctx.service.base.execSync('/usr/local/bin/mngcard', [
       'set',
-      keyser,
       oldPassword,
       newPassword,
     ]);
@@ -36,17 +36,16 @@ class MngcardService extends Service {
     }
   }
 
-  auth() {
+  login() {
     const { ctx } = this;
-    const { keyser, password } = ctx.request.body;
+    const { password } = ctx.request.body;
     const result = ctx.service.base.execSync('/usr/local/bin/mngcard', [
-      'auth',
-      keyser,
+      'login',
       password,
     ]);
 
     if (result.status !== 0) {
-      this.ctx.throw(455, `管理卡认证失败（detail：${result.stdout || ''}）`);
+      this.ctx.throw(455, `管理卡登录失败（detail：${result.stdout || ''}）`);
     }
   }
 
@@ -60,7 +59,7 @@ class MngcardService extends Service {
     if (result.status !== 0) {
       this.ctx.throw(
         455,
-        `管理卡退出登录失败（detail：${result.stdout || ''}）`
+        `管理卡注销登录失败（detail：${result.stdout || ''}）`
       );
     }
   }

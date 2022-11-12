@@ -38,14 +38,14 @@ class MngcardController extends BaseController {
    * @summary 管理卡认证（登录）
    * @description
    * @router post /mngcard/auth
-   * @request body authMngcardPwdRequest *body
+   * @request body loginMngcardRequest *body
    * @response 200 baseResponse successed
    */
   auth() {
     const { ctx } = this;
     ctx.validate(ctx.rule.authMngcardPwdRequest);
-    ctx.service.mngcard.auth();
-    this.message('管理卡认证成功');
+    ctx.service.mngcard.login();
+    this.message('管理卡登录成功');
   }
 
   /**
