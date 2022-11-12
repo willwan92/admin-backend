@@ -35,6 +35,13 @@ module.exports = (app) => {
   router.get('/keys', controller.key.query);
   router.delete('/keys/:keyindex', controller.key.del);
 
+  // 密钥备份
+  router.post('/keybackup/mngcardLogin', controller.keybackup.mngcardLogin);
+  router.post('/keybackup/selectBackupType', controller.keybackup.selectBackupType);
+  router.post('/keybackup/mngcardBackup', controller.keybackup.mngcardBackup);
+  router.post('/keybackup/restoreInit', controller.keybackup.restoreInit);
+  router.post('/keybackup/mngcardRestore', controller.keybackup.mngcardRestore);
+
   // 管理主机
   router.post('/adminips', controller.adminip.create);
   router.get('/adminips', controller.adminip.query);

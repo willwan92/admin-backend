@@ -66,6 +66,41 @@ class BaseService extends Service {
   }
 
   /**
+   * 异步步执行命令
+   * @param {String} cmd 要执行的命令
+   * @param {Array} args 执行命令的参数
+   * @return {Object} 成功返回Object对象，失败记录日志并抛出异常
+   */
+  execAsync(cmd, args = []) {
+    return new Promise((resolve, reject) => {
+      const result = child_process.spawn(cmd, args, { encoding: 'utf-8' });
+
+      result.stdout.on('data', (data) => {
+        let out = data.toString();
+        // 去掉打印的换行符
+        out = out.replace(/\n/g, '');
+        if (out === '0') {
+          resolve(data);
+        } else {
+          reject(data);
+        }
+      });
+
+      result.stderr.on('data', (data) => {
+        // 执行失败并抛出错误
+        this.ctx.logger.error(`执行失败，详情：${data}`);
+        this.ctx.throw(500, `服务器错误，详情：${data}`);
+      });
+
+      result.on('close', (code) => {
+        // 执行失败并抛出错误
+        this.ctx.logger.error(`执行失败，退出码：${code}`);
+        this.ctx.throw(500, '服务器错误');
+      });
+    });
+  }
+
+  /**
    * 记录系统日志
    * @param {int} type 日志类型：2（设备管理日志）
    * @param {int} level 日志级别：4 warning（警告）6 info（通知）
