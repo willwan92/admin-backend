@@ -21,6 +21,19 @@ module.exports = {
   interface: {
     ip: { type: 'string', description: '接口IP' },
   },
+  ifnamelist: {
+    ifname: { type: 'string', description: '接口名称' },
+  },
+  masklist: {
+    mask: { type: 'string', description: '掩码' },
+  },
+  fwips: {
+    ifname: { type: 'string', description: '接口名称' },
+    ip: { type: 'string', description: '接口IP' },
+    netmask: { type: 'string', description: '掩码' },
+    ping: { type: 'integer', description: '是否可ping' },
+    admin: { type: 'integer', description: '是否可管理' },
+  },
   server: {
     id: { type: 'integer', description: '服务编号' },
     ip: { type: 'string', description: '服务地址' },

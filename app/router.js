@@ -24,6 +24,8 @@ module.exports = (app) => {
 
   // 接口IP
   router.get('/interface/ip', controller.interface.ip);
+  router.get('/interface/listif', controller.interface.listif);
+  router.get('/interface/listmask', controller.interface.listmask);
 
   // 服务管理
   router.post('/servers', controller.server.create);
@@ -53,6 +55,11 @@ module.exports = (app) => {
   router.get('/whitelists', controller.whitelist.query);
   router.patch('/whitelists/:id', controller.whitelist.update);
   router.delete('/whitelists/:id', controller.whitelist.del);
+
+  // 接口ip
+  router.post('/ifaddrs', controller.ifaddr.create);
+  router.get('/ifaddrs', controller.ifaddr.query);
+  router.delete('/ifaddrs/:ip', controller.ifaddr.del);
 
   // 管理卡
   router.post('/mngcard', controller.mngcard.create);
