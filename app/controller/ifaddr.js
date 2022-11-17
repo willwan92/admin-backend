@@ -27,9 +27,6 @@ class IfaddrController extends BaseController {
    * @router get /ifaddrs
    * @request query string ifname 接口名称
    * @request query string ip 接口ip
-   * @request query string netmask 掩码
-   * @request query integer ping 是否可ping 1可ping 0不可ping
-   * @request query integer admin 是否可管理 1可管理 0不可管理
    * @request query integer pageNo 页码 默认 1
    * @request query integer pageSize 单页数量 默认 10
    * @response 200 ifaddrResponse successed

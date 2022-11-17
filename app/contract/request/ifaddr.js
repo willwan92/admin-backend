@@ -37,12 +37,14 @@ module.exports = {
     ping: {
         type: 'string',
         required: true,
+        enum:['on','off'],
         description: '是否可ping',
         example: 'on',
     },
     admin: {
         type: 'string',
         required: true,
+        enum:['on','off'],
         description: '是否可管理',
         example: 'off',
     },
