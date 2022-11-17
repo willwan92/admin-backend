@@ -22,6 +22,11 @@ module.exports = (app) => {
   router.patch('/users/:id/role', controller.user.updateRole);
   router.get('/users', controller.user.query);
 
+  // 文件上传和下载
+  router.post('/file', controller.file.upload);
+  router.post('/file/upload/KeyBackupFile', controller.file.uploadKeyBackupFile);
+  router.get('/file', controller.file.download);
+
   // 接口IP
   router.get('/interface/ip', controller.interface.ip);
 
@@ -37,7 +42,10 @@ module.exports = (app) => {
 
   // 密钥备份
   router.post('/keybackup/mngcardLogin', controller.keybackup.mngcardLogin);
-  router.post('/keybackup/selectBackupType', controller.keybackup.selectBackupType);
+  router.post(
+    '/keybackup/selectBackupType',
+    controller.keybackup.selectBackupType
+  );
   router.post('/keybackup/mngcardBackup', controller.keybackup.mngcardBackup);
   router.post('/keybackup/restoreInit', controller.keybackup.restoreInit);
   router.post('/keybackup/mngcardRestore', controller.keybackup.mngcardRestore);

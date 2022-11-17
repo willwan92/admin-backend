@@ -31,6 +31,33 @@ module.exports = (appInfo) => {
     },
   });
 
+  config.multipart = {
+    // 允许上传的文件类型白名单
+    whitelist: [
+      // images
+      '.jpg',
+      '.jpeg', // image/jpeg
+      '.png', // image/png, image/x-png
+      '.gif', // image/gif
+      '.bmp', // image/bmp
+      '.wbmp', // image/vnd.wap.wbmp
+      '.webp',
+      '.tif',
+      '.psd',
+      // text
+      '.txt',
+      '.svg',
+      '.json',
+      '.xml',
+      // tar
+      '.zip',
+      '.gz',
+      '.tgz',
+      '.gzip',
+      '',
+    ],
+  };
+
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1625726121147_1965';
 
