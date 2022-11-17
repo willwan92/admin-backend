@@ -93,6 +93,12 @@ module.exports = (appInfo) => {
         baseDir: '../app/models/devinitModel',
         storage: '/usr/local/conf/devinit.db',
       },
+      {
+        dialect: 'sqlite',
+        delegate: 'networkModel',
+        baseDir: '../app/models/networkModel',
+        storage: '/usr/local/conf/sysip.db',
+      },
     ],
   };
 
