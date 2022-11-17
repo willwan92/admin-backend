@@ -42,7 +42,6 @@ class IfaddrService extends Service {
     if (!object) {
       ctx.throw(433, '操作的数据不存在');
     }
-
     const result = ctx.service.base.execSync('ifaddr', ['del', ip]);
     if (!result.error) {
       return await object.destroy();
