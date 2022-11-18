@@ -18,6 +18,19 @@ module.exports = {
     ip: { type: 'string', description: '管理主机ip' },
     comment: { type: 'string', description: '备注' },
   },
+  sysroute: {
+    id: { type: 'integer', description: 'ID' },
+    ip: { type: 'string', description: '目的ip' },
+    mask: { type: 'string', description: '目的掩码' },
+    gwip: { type: 'string', description: '网关地址' },
+    metric: { type: 'integer', description: '权重' },
+  },
+  sysupdate: {
+    id: { type: 'integer', description: 'ID' },
+    time: { type: 'string', description: '升级时间' },
+    version: { type: 'string', description: '版本' },
+    des: { type: 'string', description: '升级描述' },
+  },
   interface: {
     ip: { type: 'string', description: '接口IP' },
   },

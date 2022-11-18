@@ -42,6 +42,24 @@ class FileController extends BaseController {
   }
 
   /**
+   * @summary 上传升级包文件
+   * @description
+   * @router post /file/upload/PackFile
+   * @request formData file *file 升级包文件
+   * @response 200 baseResponse successed
+   */
+   async uploadPackFile() {
+    const { ctx } = this;
+    // 获取文件流
+    const fileStream = await ctx.getFileStream();
+    if (fileStream.filename.substring(fileStream.filename.lastIndexOf('.') + 1) !== 'pkg') {
+      ctx.throw(422, '升级包文件名格式错误,必须为pkg文件');
+    }
+    await ctx.service.file.upload_pkg(fileStream);
+    this.message('文件上传成功');
+  }
+
+  /**
    * @summary 下载文件
    * @description
    * @router get /file/download/{filename}

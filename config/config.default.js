@@ -35,7 +35,7 @@ module.exports = (appInfo) => {
     // 允许上传的文件类型白名单
     whitelist: [
       // images
-      '.jpg',
+      '.pkg',
       '.jpeg', // image/jpeg
       '.png', // image/png, image/x-png
       '.gif', // image/gif
@@ -98,6 +98,12 @@ module.exports = (appInfo) => {
         delegate: 'networkModel',
         baseDir: '../app/models/networkModel',
         storage: '/usr/local/conf/sysip.db',
+      },
+      {
+        dialect: 'sqlite',
+        delegate: 'sysupdateModel',
+        baseDir: '../app/models/sysupdateModel',
+        storage: '/usr/local/conf/update.db',
       },
     ],
   };

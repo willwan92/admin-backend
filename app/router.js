@@ -25,7 +25,12 @@ module.exports = (app) => {
   // 文件上传和下载
   router.post('/file', controller.file.upload);
   router.post('/file/upload/KeyBackupFile', controller.file.uploadKeyBackupFile);
+  router.post('/file/upload/PackFile', controller.file.uploadPackFile);
   router.get('/file', controller.file.download);
+
+  //系统升级
+  router.post('/sysupdates', controller.sysupdate.update);
+  router.get('/sysupdates', controller.sysupdate.query);
 
   // 接口IP
   router.get('/interface/ip', controller.interface.ip);
@@ -68,6 +73,11 @@ module.exports = (app) => {
   router.post('/ifaddrs', controller.ifaddr.create);
   router.get('/ifaddrs', controller.ifaddr.query);
   router.delete('/ifaddrs/:ip', controller.ifaddr.del);
+
+  // 系统路由
+  router.post('/sysroutes', controller.sysroute.create);
+  router.get('/sysroutes', controller.sysroute.query);
+  router.delete('/sysroutes/:id', controller.sysroute.del);
 
   // 管理卡
   router.post('/mngcard', controller.mngcard.create);
