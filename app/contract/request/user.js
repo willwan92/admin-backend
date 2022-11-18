@@ -10,7 +10,7 @@ const { PWD_REGEXP, MOBILE_REGEXP, EMAIL_REGEXP } = require('../regexp.js');
  * max：最大长度
  * description：参数描述
  * example：参数示例
- * values：参数为枚举类型时，规定可选的值
+ * enum：参数为枚举类型时，规定可选的值
  */
 
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
     role: {
       type: 'string',
       required: true,
-      values: ['system', 'business', 'audit'],
+      enum: ['system', 'business', 'audit'],
       description:
         '用户角色。system: 系统管理员; business: 业务管理员; audit: 审计管理员。',
       example: 'system',
@@ -55,14 +55,14 @@ module.exports = {
     gender: {
       type: 'string',
       required: false,
-      values: ['female', 'male', 'unknown'],
+      enum: ['female', 'male', 'unknown'],
       description: '性别。female：女, male：男, unknown：未知',
       example: 'female',
     },
     status: {
       type: 'string',
       required: true,
-      values: ['enable', 'disable'],
+      enum: ['enable', 'disable'],
       description: '状态。enable：启用, disable：禁用',
       example: 'enable',
     },
@@ -93,7 +93,7 @@ module.exports = {
     role: {
       type: 'string',
       required: true,
-      values: ['system', 'business', 'audit'],
+      enum: ['system', 'business', 'audit'],
       description:
         '用户角色。system: 系统管理员; business: 业务管理员; audit: 审计管理员。',
       example: 'system',
@@ -116,14 +116,14 @@ module.exports = {
     gender: {
       type: 'string',
       required: false,
-      values: ['female', 'male', 'unknown'],
+      enum: ['female', 'male', 'unknown'],
       description: '性别。female：女, male：男, unknown：未知',
       example: 'female',
     },
     status: {
       type: 'string',
       required: true,
-      values: ['enable', 'disable'],
+      enum: ['enable', 'disable'],
       description: '状态。enable：启用, disable：禁用',
       example: 'enable',
     },
@@ -138,7 +138,7 @@ module.exports = {
     status: {
       type: 'string',
       required: true,
-      values: ['enable', 'disable'],
+      enum: ['enable', 'disable'],
       description: '状态。enable：启用, disable：禁用',
       example: 'enable',
     },
@@ -158,7 +158,7 @@ module.exports = {
     role: {
       type: 'string',
       required: true,
-      values: ['system', 'business', 'audit'],
+      enum: ['system', 'business', 'audit'],
       description:
         '用户角色。system: 系统管理员; business: 业务管理员; audit: 审计管理员。',
       example: 'system',

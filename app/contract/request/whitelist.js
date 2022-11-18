@@ -8,7 +8,7 @@
  * max：最大长度
  * description：参数描述
  * example：参数示例
- * values：参数为枚举类型时，规定可选的值
+ * enum：参数为枚举类型时，规定可选的值
  */
 
 module.exports = {
