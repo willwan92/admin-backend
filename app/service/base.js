@@ -56,10 +56,16 @@ class BaseService extends Service {
    */
   execSync(cmd, args = []) {
     const result = child_process.spawnSync(cmd, args, { encoding: 'utf-8' });
+    const stdout = result.stdout ? result.stdout.toLocaleLowerCase() : '';
     if (result.error) {
       // 执行失败并抛出错误
       this.ctx.logger.error(result.error);
       this.ctx.throw(500, '服务器错误');
+    } else if (
+      stdout &&
+      (stdout.includes('错误') || stdout.includes('error'))
+    ) {
+      this.ctx.throw(455, result.stdout);
     }
 
     return result;
@@ -76,10 +82,16 @@ class BaseService extends Service {
       const result = child_process.spawn(cmd, args, { encoding: 'utf-8' });
 
       result.stdout.on('data', (data) => {
-        let out = data.toString();
+        let stdout = data.toString();
+        stdout = stdout ? stdout.toLocaleLowerCase() : '';
+
+        if (stdout && (stdout.includes('错误') || stdout.includes('error'))) {
+          this.ctx.throw(455, result.stdout);
+        }
+
         // 去掉打印的换行符
-        out = out.replace(/\n/g, '');
-        if (out === '0') {
+        stdout = stdout.replace(/\n/g, '');
+        if (stdout === '0') {
           resolve(data);
         } else {
           reject(data);
