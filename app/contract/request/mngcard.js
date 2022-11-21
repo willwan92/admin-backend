@@ -58,4 +58,13 @@ module.exports = {
       example: '12345678',
     },
   },
+  algTestRequest:{
+    type: {
+      type: 'string',
+      required: true,
+      enum: ['sm1', 'sm2','sm3','sm4','random','dev'],
+      description: 'sm1算法测试，sm2算法测试，sm3算法测试，sm4算法测试，随机数质量测试，密码卡自检',
+      example: 'sm2',
+    },
+  }
 };

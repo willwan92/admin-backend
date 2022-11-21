@@ -84,6 +84,8 @@ module.exports = (app) => {
   router.patch('/mngcard/password', controller.mngcard.updatePassword);
   router.post('/mngcard/auth', controller.mngcard.auth);
   router.post('/mngcard/logout', controller.mngcard.logout);
+  router.get('/mngcard',controller.mngcard.query);
+  router.patch('/mngcard/checkcard', controller.mngcard.checkcard);
 
   // 设备密钥初始化
   router.post('/initKey', controller.initKey.initKey);

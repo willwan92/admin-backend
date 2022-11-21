@@ -13,6 +13,13 @@ module.exports = {
     protocol: { type: 'string', description: '协议' },
     comment: { type: 'string', description: '备注' },
   },
+  mngcardinit: {
+    name: { type: 'string', description: '管理卡名称' },
+    usrtype: { type: 'string', description: '管理卡类型' },
+    keyser: { type: 'string', description: '管理卡序列号' },
+    phone: { type: 'string', description: '电话' },
+    login: { type: 'string', description: '是否登陆' },
+  },
   adminip: {
     id: { type: 'integer', description: 'ID' },
     ip: { type: 'string', description: '管理主机ip' },

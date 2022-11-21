@@ -59,6 +59,39 @@ class MngcardController extends BaseController {
     ctx.service.mngcard.logout();
     this.message('管理卡退出登录成功');
   }
+
+  /**
+   * @summary 管理卡列表
+   * @description
+   * @router get /mngcard
+   * @request query string name 管理卡名称
+   * @request query string usrtype 类型
+   * @request query string keyser 序号
+   * * @request query string phone 电话
+   * @request query integer pageNo 页码 默认 1
+   * @request query integer pageSize 单页数量 默认 10
+   * @response 200 queryMngcardResponse successed
+   */
+   async query() {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    const result = await ctx.service.mngcard.query(query);
+    this.success(result);
+  }
+
+  /**
+   * @summary 算法自检
+   * @description
+   * @router patch /mngcard/checkcard
+   * @request body algTestRequest *body
+   * @response 200 baseResponse successed
+   */
+   checkcard() {
+    const { ctx } = this;
+    ctx.validate(ctx.rule.algTestRequest);
+    ctx.service.mngcard.checkcard();
+    this.message('测试成功');
+  }
 }
 
 module.exports = MngcardController;

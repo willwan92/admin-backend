@@ -63,6 +63,45 @@ class MngcardService extends Service {
       );
     }
   }
+
+  async query(query) {
+    const { ctx } = this;
+    const where = {};
+    const Op = ctx.app.Sequelize.Op;
+    query.name && (where.name = { [Op.substring]: `${query.name}` });
+    query.usrtype && (where.usrtype = { [Op.substring]: `${query.usrtype}` });
+    query.keyser && (where.keyser = { [Op.substring]: `${query.keyser}` });
+    query.phone && (where.phone = { [Op.substring]: `${query.phone}` });
+   
+    const attrs = ['name', 'usrtype', 'keyser', 'phone', 'login'];
+    const pageParams = {
+      pageNo: query.pageNo,
+      pageSize: query.pageSize,
+    };
+
+    return await ctx.service.base.page(
+      where,
+      pageParams,
+      'Mngcardinit',
+      attrs,
+      'devinitModel'
+    );
+  }
+
+  checkcard() {
+    const { ctx } = this;
+    const { type } = ctx.request.body;
+    const result = ctx.service.base.execSync('/usr/local/bin/checkcard', [
+      type,
+    ]);
+
+    if (result.status !== 0) {
+      this.ctx.throw(
+        455,
+        `命令调用失败（detail：${result.stdout || ''}）`
+      );
+    }
+  }
 }
 
 module.exports = MngcardService;
