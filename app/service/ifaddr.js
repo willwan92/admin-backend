@@ -13,7 +13,7 @@ class IfaddrService extends Service {
     const { ctx } = this;
     const where = {};
     const Op = ctx.app.Sequelize.Op;
-    query.ifname && (where.ifname = query.ifname);
+    query.ifname && (where.interface = query.ifname);
     query.ip && (where.ip = { [Op.substring]: `${query.ip}` });
     const attrs = ['interface', 'ip', 'mask', 'ping', 'admin'];
     const pageParams = {
