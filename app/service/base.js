@@ -3,6 +3,7 @@
 const Service = require('egg').Service;
 const child_process = require('child_process');
 const svgCaptcha = require('svg-captcha');
+const fs = require('fs');
 
 class BaseService extends Service {
   /**
@@ -55,6 +56,11 @@ class BaseService extends Service {
    * @return {Object} 成功返回Object对象，失败记录日志并抛出异常
    */
   execSync(cmd, args = []) {
+    fs.appendFile('/tmp/nodejs.cmd.txt',cmd+args+'\n',function(err){
+      if(err){
+        return console.log('命令记录失败'+err.message);
+      }
+    })
     const result = child_process.spawnSync(cmd, args, { encoding: 'utf-8' });
     const stdout = result.stdout ? result.stdout.toLocaleLowerCase() : '';
     if (result.error) {
@@ -78,6 +84,11 @@ class BaseService extends Service {
    * @return {Object} 成功返回Object对象，失败记录日志并抛出异常
    */
   execAsync(cmd, args = []) {
+    fs.appendFile('/tmp/nodejs.cmd.txt',cmd+args+'\n',function(err){
+      if(err){
+        return console.log('命令记录失败'+err.message);
+      }
+    })
     return new Promise((resolve, reject) => {
       const result = child_process.spawn(cmd, args, { encoding: 'utf-8' });
 
