@@ -12,6 +12,10 @@ module.exports = (app) => {
   router.post('/auth/logout', controller.auth.logout);
   router.get('/auth/captcha', controller.auth.captcha);
 
+  //关机重启
+  router.post('/reboots/reboot', controller.reboots.reboot.reboot);
+  router.post('/reboots/halt', controller.reboots.reboot.halt);
+
   // 用户
   router.post('/users', controller.user.create);
   router.get('/users/:id', jwt, controller.user.get);
