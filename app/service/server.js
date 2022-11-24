@@ -11,7 +11,7 @@ class ServerService extends Service {
 
     // 模型若为下划线方式命名会自动转为大驼峰命名，使用模型时注意要使用对应的大驼峰命名
     const server = await ctx.ipencModel.KdmcServer.create(params);
-    const result = ctx.service.base.execSync(cmd, [
+    const result = ctx.service.base.execAsync(cmd, [
       'add',
       server.id,
       ip,
