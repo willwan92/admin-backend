@@ -181,13 +181,16 @@ class BaseService extends Service {
       return ret.stdout || 0;
     }
   }
-
+  /**
+  *设备管理日志记录
+  */
   mnglog(level, message) {
-    const { ctx } = this;
-    const hostip = ctx.request.ip;
+    //const hostip = this.ctx.request.ip; //这里为什么提示ctx未定义
+    const hostip = '1.1.1.1';
+    const user = 'admin';
     const ret = child_process.spawnSync(
       '/usr/local/bin/syslog',
-      [2, level, hostip, 'admin', message],
+      [2, level, hostip, user, message],
       { encoding: 'utf-8' }
     );
     if (ret.status !== 0) {
