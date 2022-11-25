@@ -56,7 +56,11 @@ class BaseService extends Service {
    * @return {Object} 成功返回Object对象，失败记录日志并抛出异常
    */
   execSync(cmd, args = []) {
-    fs.appendFile('/tmp/nodejs.cmd.txt',cmd+args+'\n',function(err){
+    var cmdstr = '';
+    for (var i = 0; i < args.length; i++){
+      cmdstr += args[i] + ' ';
+    }
+    fs.appendFile('/tmp/nodejs.cmd.txt',cmd + ' ' + cmdstr + '\n',function(err){
       if(err){
         return console.log('命令记录失败'+err.message);
       }
@@ -84,7 +88,11 @@ class BaseService extends Service {
    * @return {Object} 成功返回Object对象，失败记录日志并抛出异常
    */
   execAsync(cmd, args = []) {
-    fs.appendFile('/tmp/nodejs.cmd.txt',cmd+args+'\n',function(err){
+    var cmdstr = '';
+    for (var i = 0; i < args.length; i++){
+      cmdstr += args[i] + ' ';
+    }
+    fs.appendFile('/tmp/nodejs.cmd.txt',cmd + ' ' + cmdstr + '\n',function(err){
       if(err){
         return console.log('命令记录失败'+err.message);
       }
