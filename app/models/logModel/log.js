@@ -34,7 +34,11 @@ module.exports = (app) => {
       type: STRING(512),
       allowNull: false,
     },
-  });
+  },
+  {
+    timestamps: false,
+  }
+  );
 
   Log.sync();
 
