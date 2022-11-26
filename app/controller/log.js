@@ -25,6 +25,20 @@ class LogController extends BaseController {
     const result = await ctx.service.log.query(queryParams);
     this.success(result);
   }
+
+   /**
+   * @summary 日志导出
+   * @description
+   * @router post /logs/export{type}
+   * @request body logExportRequest *body
+   * @response 200 baseResponse successed
+   */
+    export() {
+      const { ctx } = this;
+      ctx.validate(ctx.rule.logExportRequest);
+      ctx.service.log.export();
+      this.message('导出成功');
+    }
 }
 
 module.exports = LogController;

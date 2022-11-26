@@ -1,6 +1,8 @@
 'use strict';
 
 const Service = require('egg').Service;
+const fs = require('fs');
+const path = require('path');
 
 class LogService extends Service {
   async query(queryParams) {
@@ -26,6 +28,33 @@ class LogService extends Service {
       attrs,
       'logModel'
     );
+
+  }
+
+  export() {
+    const { ctx } = this;
+    const { type } = ctx.request.body;
+    const result = ctx.service.base.execSync('/usr/local/bin/logexport', [
+      type,
+    ]);
+    if (result.status !== 0) {
+      this.ctx.throw(
+        455,
+        `命令调用失败（detail：${result.stdout || ''}）`
+      );
+    }
+    // 可供下载文件存储目录
+    const DirPath = '/tmp/';
+    const filename = "export.log";
+    const files = fs.readdirSync(DirPath);
+
+    if (!files.includes(filename)) {
+      ctx.status = 404;
+    }
+    this.ctx.attachment(filename);
+    this.ctx.set('Content-Type', 'application/octet-stream');
+    this.ctx.body = fs.createReadStream(path.join(DirPath, filename));
+
 
   }
 }
