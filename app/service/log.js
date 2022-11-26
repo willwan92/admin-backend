@@ -15,8 +15,8 @@ class LogService extends Service {
     queryParams.type && (where.type = queryParams.type);
     const attrs = ['date', 'user', 'sip', 'pri', 'type', 'msg'];
     const pageParams = {
-      pageNo: query.pageNo,
-      pageSize: query.pageSize,
+      pageNo: queryParams.pageNo,
+      pageSize: queryParams.pageSize,
     };
 
     return await ctx.service.base.page(
