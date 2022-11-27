@@ -20,6 +20,19 @@ class InitCaController extends BaseController {
     ctx.service.initCa.init(params);
     this.message('证书初始化成功');
   }
+
+  /**
+   * @summary CA证书信息
+   * @description CA证书详细信息
+   * @router get /cacert/show
+   * @response 200 caCertResponse successed
+   */
+ async query() {
+  const { ctx } = this;
+  const query = ctx.request.query;
+  const result = await ctx.service.initCa.query(query);
+  this.success(result);
+}
 }
 
 module.exports = InitCaController;

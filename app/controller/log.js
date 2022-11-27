@@ -29,7 +29,7 @@ class LogController extends BaseController {
    /**
    * @summary 日志导出
    * @description
-   * @router post /logs/export{type}
+   * @router post /logs/export
    * @request body logExportRequest *body
    * @response 200 baseResponse successed
    */

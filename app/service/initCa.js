@@ -45,6 +45,27 @@ class InitKeyService extends Service {
       this.ctx.throw(455, `证书初始化失败（detail：${result.stdout || ''}）`);
     }
   }
+
+  async query(query) {
+    const { ctx } = this;
+    const where = {};
+    //const Op = ctx.app.Sequelize.Op;
+   
+    //query.name && (where.name = { [Op.substring]: `${query.name}` });
+    //query.version && (where.version = { [Op.substring]: `${query.version}` });
+
+    const attrs = ['name', 'version','serial','issuer','subject','pubkey_alg','modulus','sign_alg','startdate','enddate'];
+    const pageParams = {
+      pageNo: query.pageNo,
+      pageSize: query.pageSize,
+    };
+
+    return await ctx.service.base.nopage(
+      'Pkicert',
+      attrs,
+      'pkiModel'
+    );
+  }
 }
 
 module.exports = InitKeyService;

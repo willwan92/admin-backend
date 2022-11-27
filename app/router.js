@@ -96,6 +96,7 @@ module.exports = (app) => {
 
   // 证书初始化
   router.post('/initCa', controller.initCa.initCa);
+  router.get('/cacert/show',controller.initCa.query);
 
   // 首页
   router.get('/home/systemMonitor', jwt, controller.home.systemMonitor);

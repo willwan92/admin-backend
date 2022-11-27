@@ -23,6 +23,18 @@ module.exports = {
     SM4: { type: 'string', description: 'SM4算法正确性' },
     random: { type: 'string', description: '随机数质量' },
   },
+  caCertResponse: {
+    name: { type: 'string', description: '名称' },
+    version: { type: 'string', description: '版本' },
+    serial: { type: 'string', description: '序列号' },
+    issuer: { type: 'string', description: '颁发者' },
+    subject: { type: 'string', description: '主题' },
+    pubkey_alg: { type: 'string', description: '公钥算法' },
+    modulus: { type: 'string', description: '公钥' },
+    sign_alg: { type: 'string', description: '签名算法' },
+    startdate: { type: 'string', description: '起始时间' },
+    enddate: { type: 'string', description: '终止时间' },
+  },
   interfaceMonitorResponse: {
     interfaces: { type: 'array', itemType: 'interfaceMonitor' },
   },

@@ -105,6 +105,12 @@ module.exports = (appInfo) => {
         baseDir: '../app/models/sysupdateModel',
         storage: '/usr/local/conf/update.db',
       },
+      {
+        dialect: 'sqlite',
+        delegate: 'pkiModel',
+        baseDir: '../app/models/pkiModel',
+        storage: '/usr/local/conf/pkism2.db',
+      },
     ],
   };
 

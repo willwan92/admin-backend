@@ -50,6 +50,34 @@ class BaseService extends Service {
   }
 
   /**
+   * 查询全部数据
+   * @param modelName 模型名称 String
+   * @param attributes 可选。要查询的属性（字段）Array
+   * @param delegate 可选。数据库对应的delegate名称 String
+   * @return
+   */
+   async nopage(
+    modelName,
+    attributes = null,
+    delegate = 'model'
+  ) {
+    try {
+      const rows = await this.ctx[delegate][
+        modelName
+      ].findAll({
+        attributes
+      });
+
+      return {
+        data: rows,
+      };
+    } catch (error) {
+      this.ctx.logger.error(error);
+      this.ctx.throw(500, '服务器错误');
+    }
+  }
+
+  /**
    * 同步执行命令
    * @param {String} cmd 要执行的命令
    * @param {Array} args 执行命令的参数
