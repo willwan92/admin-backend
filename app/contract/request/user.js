@@ -24,7 +24,7 @@ module.exports = {
     },
     nickname: {
       type: 'string',
-      required: true,
+      required: false,
       max: 32,
       description: '用户昵称',
       example: '系统管理员',
