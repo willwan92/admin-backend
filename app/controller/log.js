@@ -9,7 +9,8 @@ class LogController extends BaseController {
    * @summary 日志列表
    * @description 查询日志列表
    * @router get /logs
-   * @request query string date 时间
+   * @request query string startDate 开始时间
+   * @request query string endDate 结束时间
    * @request query string user 用户
    * @request query integer type 日志类型
    * @request query integer pri 优先级
@@ -29,14 +30,15 @@ class LogController extends BaseController {
    /**
    * @summary 日志导出
    * @description
-   * @router post /logs/export
-   * @request body logExportRequest *body
+   * @router get /logs/export
+   * @request query integer type 日志类型('0所有日志，1规则日志，2设备管理，3设备状态，13HA日志，200其他')
    * @response 200 baseResponse successed
    */
     export() {
       const { ctx } = this;
-      ctx.validate(ctx.rule.logExportRequest);
-      ctx.service.log.export();
+      //ctx.validate(ctx.rule.logExportRequest);
+      const logParams = ctx.request.query;
+      ctx.service.log.export(logParams);
       this.message('导出成功');
     }
 }

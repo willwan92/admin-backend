@@ -5,10 +5,7 @@ module.exports = (app) => {
   // date varchar(32),type int,pri int,vsysid int,host varchar(64),sip varchar(32),
   // user varchar(32),msg varchar(512)
   const Log = app.logModel.define('log', {
-    date: {
-      type: STRING(32),
-      allowNull: false,
-    },
+    date:DATE,
     type: {
       type: INTEGER,
       allowNull: false,

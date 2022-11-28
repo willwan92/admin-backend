@@ -9,7 +9,17 @@ class LogService extends Service {
     const { ctx } = this;
     const where = {};
     const Op = ctx.app.Sequelize.Op;
-    queryParams.date && (where.date = { [Op.substring]: `${queryParams.date}` });
+    //queryParams.startDate && queryParams.endDate (where.date >= queryParams.startDate && where.date <= queryParams.endDate);
+    queryParams.startDate &&
+    queryParams.endDate &&
+      (where.date = {
+        [Op.between]: [
+          new Date(queryParams.startDate),
+          new Date(queryParams.endDate),
+        ],
+      });
+
+    //queryParams.endDate && (where.date <= queryParams.endDate);
     queryParams.user && (where.user = { [Op.substring]: `${queryParams.user}` });
     queryParams.sip && (where.sip = { [Op.substring]: `${queryParams.sip}` });
     queryParams.msg && (where.msg = { [Op.substring]: `${queryParams.msg}` });
@@ -31,11 +41,11 @@ class LogService extends Service {
 
   }
 
-  export() {
+  export(logParams) {
     const { ctx } = this;
-    const { type } = ctx.request.body;
+    //const { type } = ctx.request.body;
     const result = ctx.service.base.execSync('/usr/local/bin/logexport', [
-      type,
+      logParams.type,
     ]);
     if (result.status !== 0) {
       this.ctx.throw(

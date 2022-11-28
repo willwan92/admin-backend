@@ -106,5 +106,5 @@ module.exports = (app) => {
 
   // 日志
   router.get('/logs', controller.log.query);
-  router.post('/logs/export/:type', controller.log.export);
+  router.get('/logs/export/:type', controller.log.export);
 };
