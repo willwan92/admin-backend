@@ -1,57 +1,55 @@
 'use strict';
+
 module.exports = (app) => {
   const { STRING, INTEGER } = app.Sequelize;
-  const Pkicert = app.pkiModel.define(
-    'pkicert',
+  const Sm2cert = app.pkiModel.define(
+    'sm2cert',
     {
         name: {
         type: STRING(32),
+        primaryKey: true,
         allowNull: false,
         },
-        version: {
-        type: STRING(128),
-        allowNull: false,
-        },
-        serial: {
-        type: STRING(128),
-        allowNull: false,
+        type:{
+        type:INTEGER,
+        allowNull:false,
         },
         issuer: {
         type: STRING(256),
         allowNull: false,
         },
         subject: {
-        type: STRING(256),
+        type: STRING(32),
         allowNull: false,
         },
-        pubkey_alg: {
-        type: STRING(128),
-        allowNull: false,
-        },
-        modulus: {
-        type: STRING(1025),
-        allowNull: false,
-        },
-        sign_alg: {
-        type: STRING(128),
+        cn: {
+        type: STRING(32),
         allowNull: false,
         },
         startdate: {
-        type: STRING(128),
+        type: STRING(32),
         allowNull: false,
         },
         enddate: {
-        type: STRING(128),
+        type: STRING(64),
+        allowNull: false,
+        },
+        serial: {
+        type: STRING(64),
+        allowNull: false,
+        },
+        method: {
+        type: INTEGER,
         allowNull: false,
         },
     },
     {
-        tableName: 'cacenter_ca',
+        tableName: 'pki_cert',
         timestamps: false,
     }
   );
 
-  Pkicert.sync({ alter: true });
+  Sm2cert.sync({ alter: true });
 
-  return Pkicert;
+  return Sm2cert;
 };
