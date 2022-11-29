@@ -51,7 +51,20 @@ module.exports = (app) => {
     }
   );
 
-  Pkicert.sync({ alter: true });
+  //Pkicert.sync({ alter: true });
+  Pkicert.sync({ alter: true }).then(async () => {
+    const cert = await Pkicert.findOne({
+      where: {
+        name: 'cacert',
+      },
+    });
+
+    if (!cert) {
+      Pkicert.create({
+        name: 'cacert',
+      });
+    }
+  });
 
   return Pkicert;
 };
