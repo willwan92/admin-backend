@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING, INTEGER, DATE, ENUM } = app.Sequelize;
 
   const User = app.model.define('user', {
@@ -47,7 +47,7 @@ module.exports = async (app) => {
     updated_at: DATE,
   });
 
-  await User.sync().then(async () => {
+  User.sync().then(async () => {
     const user = await User.findOne({
       where: {
         username: 'admin',

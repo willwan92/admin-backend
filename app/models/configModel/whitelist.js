@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Whitelist = app.configModel.define(
     'whitelist',
@@ -38,7 +38,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Whitelist.sync();
+  Whitelist.sync();
 
   return Whitelist;
 };

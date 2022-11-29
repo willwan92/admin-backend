@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Updatehis = app.sysupdateModel.define(
     'updatehis',
@@ -29,7 +29,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Updatehis.sync();
+  Updatehis.sync();
 
   return Updatehis;
 };

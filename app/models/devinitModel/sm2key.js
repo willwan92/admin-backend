@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING } = app.Sequelize;
   const Sm2key = app.devinitModel.define(
     'Sm2key',
@@ -19,7 +19,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Sm2key.sync();
+  Sm2key.sync();
 
   return Sm2key;
 };

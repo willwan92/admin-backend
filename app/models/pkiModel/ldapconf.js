@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Ldapconf = app.pkiModel.define(
     'ldapconf',
@@ -41,7 +41,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Ldapconf.sync();
+  Ldapconf.sync();
   //const ldap = Ldapconf.build(
   //  {ldap_server:'1.1.1.1',ldap_port:'389',username:'',password:'',object:'',attribute:'',sizelimit:0}
   // );

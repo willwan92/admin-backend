@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING } = app.Sequelize;
   const Mngcardinit = app.devinitModel.define(
     'SmMngcardinit',
@@ -28,7 +28,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Mngcardinit.sync();
+  Mngcardinit.sync();
 
   return Mngcardinit;
 };

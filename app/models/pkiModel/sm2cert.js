@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Sm2cert = app.pkiModel.define(
     'sm2cert',
@@ -49,7 +49,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Sm2cert.sync();
+  Sm2cert.sync();
 
   return Sm2cert;
 };

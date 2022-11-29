@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   // 模型若为下划线方式命名会自动转为大驼峰命名，使用模型时注意要使用对应的大驼峰命名
   const KdmcServer = app.ipencModel.define('kdmc_server', {
@@ -23,7 +23,7 @@ module.exports = async (app) => {
     },
   });
 
-  await KdmcServer.sync();
+  KdmcServer.sync();
 
   return KdmcServer;
 };

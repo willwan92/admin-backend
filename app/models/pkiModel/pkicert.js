@@ -1,5 +1,5 @@
 'use strict';
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Pkicert = app.pkiModel.define(
     'pkicert',
@@ -52,7 +52,7 @@ module.exports = async (app) => {
   );
 
   //Pkicert.sync();
-  await Pkicert.sync().then(async () => {
+  Pkicert.sync().then(async () => {
     const cert = await Pkicert.findOne({
       where: {
         name: 'cacert',

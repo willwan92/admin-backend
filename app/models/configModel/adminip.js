@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Adminip = app.configModel.define(
     'adminip',
@@ -27,7 +27,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Adminip.sync();
+  Adminip.sync();
 
   return Adminip;
 };

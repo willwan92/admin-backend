@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async (app) => {
+module.exports = (app) => {
   const { STRING, INTEGER, DATE, ENUM } = app.Sequelize;
   // date varchar(32),type int,pri int,vsysid int,host varchar(64),sip varchar(32),
   // user varchar(32),msg varchar(512)
@@ -37,7 +37,7 @@ module.exports = async (app) => {
   }
   );
 
-  await Log.sync();
+  Log.sync();
 
   return Log;
 };
