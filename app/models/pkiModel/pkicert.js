@@ -51,8 +51,8 @@ module.exports = async (app) => {
     }
   );
 
-  //Pkicert.sync({ alter: true });
-  await Pkicert.sync({ alter: true }).then(async () => {
+  //Pkicert.sync();
+  await Pkicert.sync().then(async () => {
     const cert = await Pkicert.findOne({
       where: {
         name: 'cacert',

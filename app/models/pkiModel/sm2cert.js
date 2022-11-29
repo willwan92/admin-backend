@@ -49,7 +49,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Sm2cert.sync({ alter: true });
+  await Sm2cert.sync();
 
   return Sm2cert;
 };

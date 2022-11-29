@@ -28,7 +28,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Mngcardinit.sync({ alter: true });
+  await Mngcardinit.sync();
 
   return Mngcardinit;
 };

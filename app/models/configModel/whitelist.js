@@ -38,7 +38,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Whitelist.sync({ alter: true });
+  await Whitelist.sync();
 
   return Whitelist;
 };

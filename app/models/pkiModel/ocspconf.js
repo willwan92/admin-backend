@@ -30,7 +30,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Ocspconf.sync({ alter: true });
+  await Ocspconf.sync();
   //const ocsp = Ocspconf.build(
   //  {ip:'1.1.1.1',port:'',timeout:0,ca_cert:''}
  // );

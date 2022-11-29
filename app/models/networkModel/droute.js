@@ -32,7 +32,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Droute.sync({ alter: true });
+  await Droute.sync();
 
   return Droute;
 };

@@ -27,7 +27,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Adminip.sync({ alter: true });
+  await Adminip.sync();
 
   return Adminip;
 };

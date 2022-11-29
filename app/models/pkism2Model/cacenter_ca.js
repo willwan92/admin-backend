@@ -28,7 +28,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Cacenter_ca.sync({ alter: true });
+  await Cacenter_ca.sync();
 
   return Cacenter_ca;
 };

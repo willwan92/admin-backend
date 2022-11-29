@@ -41,7 +41,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Ldapconf.sync({ alter: true });
+  await Ldapconf.sync();
   //const ldap = Ldapconf.build(
   //  {ldap_server:'1.1.1.1',ldap_port:'389',username:'',password:'',object:'',attribute:'',sizelimit:0}
   // );

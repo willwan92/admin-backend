@@ -19,7 +19,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Sm2key.sync({ alter: true });
+  await Sm2key.sync();
 
   return Sm2key;
 };

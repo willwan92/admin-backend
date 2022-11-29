@@ -38,7 +38,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Fwips.sync({ alter: true });
+  await Fwips.sync();
 
   return Fwips;
 };

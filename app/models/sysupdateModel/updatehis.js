@@ -29,7 +29,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Updatehis.sync({ alter: true });
+  await Updatehis.sync();
 
   return Updatehis;
 };

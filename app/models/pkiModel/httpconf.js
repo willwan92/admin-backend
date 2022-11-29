@@ -30,7 +30,7 @@ module.exports = async (app) => {
     }
   );
 
-  await Httpconf.sync({ alter: true });
+  await Httpconf.sync();
 
   return Httpconf;
 };

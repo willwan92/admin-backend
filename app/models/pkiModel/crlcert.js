@@ -41,8 +41,8 @@ module.exports = async (app) => {
     }
   );
 
-  //Crlcert.sync({ alter: true });
-  await Crlcert.sync({ alter: true }).then(async () => {
+  //Crlcert.sync();
+  await Crlcert.sync().then(async () => {
     const cert = await Crlcert.findOne({
       where: {
         name: 'cacert',
