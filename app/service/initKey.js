@@ -31,6 +31,14 @@ class InitKeyService extends Service {
       this.ctx.throw(455, `设备密钥初始化失败（detail：${result.stdout || ''}）`);
     }
   }
+
+  async setpin(params) {
+    const { ctx } = this;
+    const { keyid, pin } = params;
+    const cmd = '/usr/local/bin/keymng';
+    const args = ['setpin', keyid,pin];
+    return ctx.service.base.execSync(cmd, args);
+  }
 }
 
 module.exports = InitKeyService;

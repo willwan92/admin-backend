@@ -46,4 +46,22 @@ module.exports = {
       example: 'sm1',
     },
   },
+  setpinRequest: {
+    keyid: {
+      type: 'integer',
+      required: true,
+      min:1,
+      max:511,
+      description: '密钥索引，范围1-511',
+      example: 1,
+    },
+    pin: {
+      type: 'string',
+      required: true,
+      min:1,
+      max:32,
+      description: '1-32位访问控制码',
+      example: '12345678',
+    },
+  },
 };

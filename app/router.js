@@ -93,7 +93,7 @@ module.exports = (app) => {
 
   // 设备密钥初始化
   router.post('/initKey', controller.initKey.initKey);
-
+  router.post('/setpin', controller.initKey.setpin);
   // 证书初始化
   router.post('/initCa', controller.initCa.initCa);
   router.get('/cacert/show',controller.initCa.query);
