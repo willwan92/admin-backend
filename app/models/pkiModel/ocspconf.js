@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (app) => {
+module.exports = async (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Ocspconf = app.pkiModel.define(
     'ocspconf',
@@ -30,7 +30,7 @@ module.exports = (app) => {
     }
   );
 
-  Ocspconf.sync({ alter: true });
+  await Ocspconf.sync({ alter: true });
   //const ocsp = Ocspconf.build(
   //  {ip:'1.1.1.1',port:'',timeout:0,ca_cert:''}
  // );

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (app) => {
+module.exports = async (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Fwips = app.networkModel.define(
     'fwips',
@@ -9,7 +9,7 @@ module.exports = (app) => {
         type: INTEGER,
         primaryKey: true,
       },
-      interface:{
+      interface: {
         type: STRING(32),
         allowNull: false,
       },
@@ -33,11 +33,12 @@ module.exports = (app) => {
       },
     },
     {
+      tableName: 'fwips',
       timestamps: false,
     }
   );
 
-  Fwips.sync({ alter: true });
+  await Fwips.sync({ alter: true });
 
   return Fwips;
 };

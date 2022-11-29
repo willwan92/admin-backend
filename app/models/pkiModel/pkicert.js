@@ -1,58 +1,58 @@
 'use strict';
-module.exports = (app) => {
+module.exports = async (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Pkicert = app.pkiModel.define(
     'pkicert',
     {
-        name: {
+      name: {
         type: STRING(32),
         allowNull: false,
-        },
-        version: {
+      },
+      version: {
         type: STRING(128),
         allowNull: true,
-        },
-        serial: {
+      },
+      serial: {
         type: STRING(128),
         allowNull: true,
-        },
-        issuer: {
+      },
+      issuer: {
         type: STRING(256),
         allowNull: true,
-        },
-        subject: {
+      },
+      subject: {
         type: STRING(256),
         allowNull: true,
-        },
-        pubkey_alg: {
+      },
+      pubkey_alg: {
         type: STRING(128),
         allowNull: true,
-        },
-        modulus: {
+      },
+      modulus: {
         type: STRING(1025),
         allowNull: true,
-        },
-        sign_alg: {
+      },
+      sign_alg: {
         type: STRING(128),
         allowNull: true,
-        },
-        startdate: {
+      },
+      startdate: {
         type: STRING(128),
         allowNull: true,
-        },
-        enddate: {
+      },
+      enddate: {
         type: STRING(128),
         allowNull: true,
-        },
+      },
     },
     {
-        tableName: 'cacenter_ca',
-        timestamps: false,
+      tableName: 'cacenter_ca',
+      timestamps: false,
     }
   );
 
   //Pkicert.sync({ alter: true });
-  Pkicert.sync({ alter: true }).then(async () => {
+  await Pkicert.sync({ alter: true }).then(async () => {
     const cert = await Pkicert.findOne({
       where: {
         name: 'cacert',
@@ -60,7 +60,7 @@ module.exports = (app) => {
     });
 
     if (!cert) {
-      Pkicert.create({
+      await Pkicert.create({
         name: 'cacert',
       });
     }

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (app) => {
+module.exports = async (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Cacenter_ca = app.pkism2Model.define(
     'cacenter_ca',
@@ -28,7 +28,7 @@ module.exports = (app) => {
     }
   );
 
-  Cacenter_ca.sync({ alter: true });
+  await Cacenter_ca.sync({ alter: true });
 
   return Cacenter_ca;
 };

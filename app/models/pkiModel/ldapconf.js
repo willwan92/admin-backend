@@ -1,50 +1,50 @@
 'use strict';
 
-module.exports = (app) => {
+module.exports = async (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Ldapconf = app.pkiModel.define(
     'ldapconf',
     {
-        ldap_server: {
+      ldap_server: {
         type: STRING(32),
         primaryKey: true,
         allowNull: false,
-        },
-        ldap_port: {
+      },
+      ldap_port: {
         type: STRING(128),
         allowNull: false,
-        },
-        username: {
+      },
+      username: {
         type: STRING(256),
         allowNull: true,
-        },
-        password: {
+      },
+      password: {
         type: STRING(32),
         allowNull: true,
-        },
-        object: {
+      },
+      object: {
         type: STRING(32),
         allowNull: true,
-        },
-        attribute: {
+      },
+      attribute: {
         type: STRING(64),
         allowNull: true,
-        },
-        sizelimit: {
+      },
+      sizelimit: {
         type: INTEGER,
         allowNull: true,
-        },
+      },
     },
     {
-        tableName: 'ldap_conf',
-        timestamps: false,
+      tableName: 'ldap_conf',
+      timestamps: false,
     }
   );
 
-  Ldapconf.sync({ alter: true });
+  await Ldapconf.sync({ alter: true });
   //const ldap = Ldapconf.build(
   //  {ldap_server:'1.1.1.1',ldap_port:'389',username:'',password:'',object:'',attribute:'',sizelimit:0}
- // );
+  // );
   //ldap.save();
   return Ldapconf;
 };

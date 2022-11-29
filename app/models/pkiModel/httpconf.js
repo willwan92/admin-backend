@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (app) => {
+module.exports = async (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Httpconf = app.pkiModel.define(
     'httpconf',
@@ -30,7 +30,7 @@ module.exports = (app) => {
     }
   );
 
-  Httpconf.sync({ alter: true });
+  await Httpconf.sync({ alter: true });
 
   return Httpconf;
 };

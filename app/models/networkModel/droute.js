@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (app) => {
+module.exports = async (app) => {
   const { STRING, INTEGER } = app.Sequelize;
   const Droute = app.networkModel.define(
     'droute',
@@ -32,7 +32,7 @@ module.exports = (app) => {
     }
   );
 
-  Droute.sync({ alter: true });
+  await Droute.sync({ alter: true });
 
   return Droute;
 };
