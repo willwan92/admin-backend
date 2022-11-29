@@ -12,35 +12,35 @@ module.exports = (app) => {
         },
         type:{
         type:INTEGER,
-        allowNull:false,
+        allowNull:true,
         },
         issuer: {
         type: STRING(256),
-        allowNull: false,
+        allowNull: true,
         },
         subject: {
         type: STRING(32),
-        allowNull: false,
+        allowNull: true,
         },
         cn: {
         type: STRING(32),
-        allowNull: false,
+        allowNull: true,
         },
         startdate: {
         type: STRING(32),
-        allowNull: false,
+        allowNull: true,
         },
         enddate: {
         type: STRING(64),
-        allowNull: false,
+        allowNull: true,
         },
         serial: {
         type: STRING(64),
-        allowNull: false,
+        allowNull: true,
         },
         method: {
         type: INTEGER,
-        allowNull: false,
+        allowNull: true,
         },
     },
     {

@@ -10,39 +10,39 @@ module.exports = (app) => {
         },
         version: {
         type: STRING(128),
-        allowNull: false,
+        allowNull: true,
         },
         serial: {
         type: STRING(128),
-        allowNull: false,
+        allowNull: true,
         },
         issuer: {
         type: STRING(256),
-        allowNull: false,
+        allowNull: true,
         },
         subject: {
         type: STRING(256),
-        allowNull: false,
+        allowNull: true,
         },
         pubkey_alg: {
         type: STRING(128),
-        allowNull: false,
+        allowNull: true,
         },
         modulus: {
         type: STRING(1025),
-        allowNull: false,
+        allowNull: true,
         },
         sign_alg: {
         type: STRING(128),
-        allowNull: false,
+        allowNull: true,
         },
         startdate: {
         type: STRING(128),
-        allowNull: false,
+        allowNull: true,
         },
         enddate: {
         type: STRING(128),
-        allowNull: false,
+        allowNull: true,
         },
     },
     {

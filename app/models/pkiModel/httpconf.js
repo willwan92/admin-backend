@@ -12,15 +12,15 @@ module.exports = (app) => {
         },
         url: {
         type: STRING(256),
-        allowNull: false,
+        allowNull: true,
         },
         user: {
         type: STRING(80),
-        allowNull: false,
+        allowNull: true,
         },
         passwd: {
         type: STRING(80),
-        allowNull: false,
+        allowNull: true,
         },
         
     },

@@ -12,27 +12,27 @@ module.exports = (app) => {
         },
         version: {
         type: STRING(128),
-        allowNull: false,
+        allowNull: true,
         },
         issuer: {
         type: STRING(256),
-        allowNull: false,
+        allowNull: true,
         },
         lastupdate: {
         type: STRING(32),
-        allowNull: false,
+        allowNull: true,
         },
         nextupdate: {
         type: STRING(32),
-        allowNull: false,
+        allowNull: true,
         },
         signature: {
         type: STRING(64),
-        allowNull: false,
+        allowNull: true,
         },
         revoked_num: {
         type: INTEGER,
-        allowNull: false,
+        allowNull: true,
         },
     },
     {
