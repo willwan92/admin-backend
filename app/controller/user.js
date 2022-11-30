@@ -78,7 +78,8 @@ class UserController extends BaseController {
 
     const req = {};
     req.password = md5(`${ctx.request.body.password}.${HashSalt}`);
-    await ctx.service.user.update(ctx.params, req);
+    req.oldpassword = md5(`${ctx.request.body.oldpassword}.${HashSalt}`);
+    await ctx.service.user.updatepwd(ctx.params, req );
     this.message('修改密码成功');
   }
 

@@ -153,6 +153,15 @@ module.exports = {
       description: '密码：8-16位，包含字母、数字和特殊字符的组合。',
       example: 'u_123456',
     },
+    oldpassword: {
+      type: 'string',
+      required: true,
+      min: 8,
+      max: 16,
+      format: PWD_REGEXP,
+      description: '密码：8-16位，包含字母、数字和特殊字符的组合。',
+      example: 'u_123456',
+    },
   },
   updateUserRoleRequest: {
     role: {

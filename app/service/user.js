@@ -84,6 +84,32 @@ class UserService extends Service {
     return await user.update(data);
   }
 
+   // 修改密码
+   async updatepwd(params, data) {
+    const { ctx } = this;
+    const { id } = params;
+    const { password,oldpassword } = data;
+
+    const req = {};
+    req.password = password;
+
+    if (!id) {
+      ctx.throw(433, '路径参数错误');
+    }
+
+    const user = await ctx.model.User.findByPk(id);
+    if (!user) {
+      ctx.throw(433, '操作的数据的数据不存在');
+    }
+    const puser = await ctx.model.User.findOne({
+      where: { id,password:oldpassword },
+    });
+    if (!puser) {
+      ctx.throw(433, '您输入的旧密码不正确！');
+    }
+    return await user.update(req);
+  }
+
   // 获取用户信息
   async get(id) {
     const { ctx } = this;
