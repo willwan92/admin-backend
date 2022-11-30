@@ -12,7 +12,7 @@ module.exports = (app) => {
     },
     nickname: {
       type: STRING(32),
-      allowNull: false,
+      allowNull: true,
     },
     role: {
       type: ENUM('system', 'business', 'audit'),
