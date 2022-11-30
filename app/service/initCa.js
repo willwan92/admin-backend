@@ -66,6 +66,20 @@ class InitKeyService extends Service {
       'pkiModel'
     );
   }
+
+  async initprogress() {
+    const { ctx } = this;
+    const cmd = '/usr/local/bin/initprogress';
+    let result = ctx.service.base.execSync(cmd);
+    result = result && result.stdout && result.stdout.replace(/\n/g, '');
+    const progress = '{\"progress\":' + '\"' + result + '\"' + '}';
+    console.log(progress);
+    try {
+      return JSON.parse(progress);
+    } catch (error) {
+      this.ctx.throw(error);
+    }
+  }
 }
 
 module.exports = InitKeyService;

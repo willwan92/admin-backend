@@ -38,4 +38,7 @@ module.exports = {
   interfaceMonitorResponse: {
     interfaces: { type: 'array', itemType: 'interfaceMonitor' },
   },
+  initprogressResponse: {
+    progress: { type: 'string', description: '当前进度' },
+  },
 };
