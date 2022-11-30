@@ -32,8 +32,9 @@ class UserService extends Service {
     const { ctx } = this;
     const where = {};
     const Op = ctx.app.Sequelize.Op;
+    where.username = { [Op.not]:'admin'};
     query.username &&
-      (where.username = { [Op.substring]: `${query.username}` });
+      (where.username = { [Op.substring]: `${query.username}` ,[Op.not]:'admin'});
     query.phone && (where.phone = { [Op.substring]: `${query.phone}` });
     query.status && (where.status = query.status);
     query.startDate &&
