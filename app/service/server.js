@@ -13,7 +13,7 @@ class ServerService extends Service {
     const pserver = await ctx.ipencModel.KdmcServer.findOne({
       where: { ip,port },
     });
-    if (!pserver) {
+    if (pserver) {
       ctx.throw(433, '记录已存在！请重新输入');
     }
 
