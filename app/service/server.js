@@ -10,7 +10,7 @@ class ServerService extends Service {
     const { ip, port, type } = params;
 
     // 模型若为下划线方式命名会自动转为大驼峰命名，使用模型时注意要使用对应的大驼峰命名
-    const pserver = await ctx.model.KdmcServer.findOne({
+    const pserver = await ctx.ipencModel.KdmcServer.findOne({
       where: { ip,port },
     });
     if (!pserver) {
