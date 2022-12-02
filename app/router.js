@@ -104,7 +104,10 @@ module.exports = (app) => {
   router.get('/home/productInfo', controller.home.productInfo);
   router.get('/home/interfaceMonitor', controller.home.interfaceMonitor);
   router.get('/home/algTest', controller.home.algTest);
-  router.get('/home/gettime',controller.home.gettime);
+  //时间
+  router.get('/timer/gettime',controller.timer.gettime);
+  router.post('/timer/settime', controller.timer.settime);
+ 
 
   // 日志
   router.get('/logs', controller.log.query);
