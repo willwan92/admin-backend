@@ -15,6 +15,8 @@ class AuthService extends Service {
       !captcha ||
       (captcha && captcha.toLocaleLowerCase() !== sessionCaptcha)
     ) {
+      // 删除上次保存的验证码，前端需要刷新验证码
+      ctx.session.captcha = null;
       ctx.throw(433, '验证码错误！');
     }
 
@@ -25,10 +27,9 @@ class AuthService extends Service {
       },
     });
 
-    const hostip = ctx.request.ip;
-    const syslog = ctx.service.base.syslog;
     if (!user) {
-      syslog(2, 4, hostip, username, '用户名或密码错误');
+      ctx.service.base.syslog(2, 4, '用户名或密码错误', username);
+      ctx.session.captcha = null;
       ctx.throw(433, '用户名或密码错误');
     }
 
@@ -50,7 +51,11 @@ class AuthService extends Service {
     );
 
     // 记录日志
-    syslog(2, 6, hostip, username, '登录成功');
+    ctx.service.base.syslog(2, 6, '登录成功', username);
+
+    // 保存当前用户名到session中
+    ctx.session.username = username;
+
     // 调用 rotateCsrfSecret 刷新用户的 CSRF token
     ctx.rotateCsrfSecret();
 
@@ -64,9 +69,8 @@ class AuthService extends Service {
   logout(params) {
     const { ctx } = this;
     const { username } = params;
-    const hostip = ctx.request.ip;
-    const syslog = ctx.service.base.syslog;
-    syslog(2, 4, hostip, username, '退出登录');
+    ctx.session.username = null;
+    ctx.service.base.syslog(2, 4, '退出登录', username);
   }
 
   captcha() {

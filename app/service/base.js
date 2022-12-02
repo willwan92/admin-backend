@@ -163,15 +163,16 @@ class BaseService extends Service {
    * 记录系统日志
    * @param {int} type 日志类型：2（设备管理日志）
    * @param {int} level 日志级别：4 warning（警告）6 info（通知）
-   * @param {string} hostip 客户端主机IP
-   * @param {string} username 管理员名称
    * @param {string} message 日志信息
+   * @param {string} username 管理员名称
    * @return {any} 成功返回0或命令输出，失败记录日志
    */
-  syslog(type, level, hostip, username, message) {
+  syslog(type, level, message, username = '') {
+    const hostip = this.ctx.request.ip;
+    const _username = username || this.ctx.session.username;
     const ret = child_process.spawnSync(
       '/usr/local/bin/syslog',
-      [type, level, hostip, username, message],
+      [type, level, hostip, _username, message],
       { encoding: 'utf-8' }
     );
     if (ret.status !== 0) {
