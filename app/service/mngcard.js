@@ -21,9 +21,10 @@ class MngcardService extends Service {
 
   updatePassword() {
     const { ctx } = this;
-    const { oldPassword, newPassword } = ctx.request.body;
+    const { serial, oldPassword, newPassword } = ctx.request.body;
     const result = ctx.service.base.execSync('/usr/local/bin/mngcard', [
       'set',
+      serial,
       oldPassword,
       newPassword,
     ]);

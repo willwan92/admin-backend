@@ -34,6 +34,13 @@ module.exports = {
     },
   },
   updateMngcardPwdRequest: {
+    serial: {
+      type: 'string',
+      required: true,
+      max: 32,
+      description: '管理卡序列号',
+      example: 'K1426210524B0334',
+    },
     oldPassword: {
       type: 'string',
       required: true,
