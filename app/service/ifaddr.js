@@ -31,7 +31,6 @@ class IfaddrService extends Service {
   }
   async del(ip) {
     const { ctx } = this;
-    const mnglog = ctx.service.base.mnglog;
     if (!ip) {
       ctx.throw(433, '缺少ip参数');
     }
@@ -44,7 +43,7 @@ class IfaddrService extends Service {
       ctx.throw(433, '操作的数据不存在');
     }
     const logmsg = '删除接口地址:' + ip;
-    mnglog(6,logmsg);
+    ctx.service.base.syslog(2, 6, logmsg, '');
     const result = ctx.service.base.execSync('ifaddr', ['del', ip]);
     if (!result.error) {
       return await object.destroy();
