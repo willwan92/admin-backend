@@ -182,6 +182,22 @@ class BaseService extends Service {
     }
   }
 
+  mnglog(level, message) {
+    const { ctx } = this;
+    const hostip = ctx.request.ip;
+    const ret = child_process.spawnSync(
+      '/usr/local/bin/syslog',
+      [2, level, hostip, 'admin', message],
+      { encoding: 'utf-8' }
+    );
+    if (ret.status !== 0) {
+      this.ctx.logger.error(ret.error);
+      this.ctx.throw(500, '服务器内部错误');
+    } else {
+      return ret.stdout || 0;
+    }
+  }
+
   /**
    * 生成图片验证码
    */

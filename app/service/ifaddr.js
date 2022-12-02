@@ -46,6 +46,8 @@ class IfaddrService extends Service {
     if (!result.error) {
       return await object.destroy();
     }
+    logmsg = '删除接口地址:' + ip;
+    mnglog(4,logmsg);
   }
 }
 
