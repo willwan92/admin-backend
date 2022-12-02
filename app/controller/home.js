@@ -55,6 +55,18 @@ class HomeController extends BaseController {
     const result = this.ctx.service.home.execHomeCmd('/usr/local/bin/algtest');
     this.success(result);
   }
+
+  /**
+   * @summary 获取系统时间
+   * @description
+   * @router get /home/gettime
+   * @response 200 systimeResponse successed
+   */
+   async gettime() {
+    const result = this.ctx.service.home.execHomeCmd('/usr/local/bin/systime show');
+    this.success(result);
+  }
+ 
 }
 
 module.exports = HomeController;

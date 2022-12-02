@@ -41,4 +41,7 @@ module.exports = {
   initprogressResponse: {
     progress: { type: 'string', description: '当前进度' },
   },
+  systimeResponse: {
+    time: { type: 'string', description: '系统当前时间' },
+  },
 };
