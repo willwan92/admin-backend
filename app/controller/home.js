@@ -63,7 +63,7 @@ class HomeController extends BaseController {
    * @response 200 systimeResponse successed
    */
    async gettime() {
-    const result = this.ctx.service.home.execHomeCmd('/usr/local/bin/systime show');
+    const result = this.ctx.service.home.execHomeCmd('/usr/local/bin/sys_time');
     this.success(result);
   }
  
