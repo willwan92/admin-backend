@@ -35,6 +35,9 @@ class BaseService extends Service {
         limit,
         offset,
         attributes,
+        order: [
+          ['id', 'DESC']
+        ],
       });
 
       return {
@@ -48,6 +51,51 @@ class BaseService extends Service {
       this.ctx.throw(500, '服务器错误');
     }
   }
+
+   /**
+   * 分页查询数据
+   * @param where 查询参数 Object
+   * @param pageParams 分页参数 { pageNo, pageSize }
+   * @param modelName 模型名称 String
+   * @param attributes 可选。要查询的属性（字段）Array
+   * @param order 可选。排序方法 
+   * @param delegate 可选。数据库对应的delegate名称 String
+   * @return
+   */
+    async orderpage(
+      where,
+      pageParams,
+      modelName,
+      attributes = null,
+      order,
+      delegate = 'model'
+    ) {
+      try {
+        const limit = pageParams.pageSize ? Number(pageParams.pageSize) : 10;
+        const offset = pageParams.pageNo
+          ? (pageParams.pageNo - 1) * limit - 1
+          : 0;
+  
+        const { count, rows } = await this.ctx[delegate][
+          modelName
+        ].findAndCountAll({
+          where,
+          limit,
+          offset,
+          attributes,
+          order,
+        });
+        return {
+          total: count,
+          data: rows,
+          pageNo: pageParams.pageNo || 1,
+          pageSize: pageParams.pageSize || 10,
+        };
+      } catch (error) {
+        this.ctx.logger.error(error);
+        this.ctx.throw(500, '服务器错误');
+      }
+    }
 
   /**
    * 查询全部数据

@@ -26,16 +26,20 @@ class LogService extends Service {
     queryParams.pri && (where.pri = queryParams.pri);
     queryParams.type && (where.type = queryParams.type);
     const attrs = ['date', 'user', 'sip', 'pri', 'type', 'msg'];
+    const order = [
+      ['id', 'DESC']
+    ];
     const pageParams = {
       pageNo: queryParams.pageNo,
       pageSize: queryParams.pageSize,
     };
 
-    return await ctx.service.base.page(
+    return await ctx.service.base.orderpage(
       where,
       pageParams,
       'Log',
       attrs,
+      order,
       'logModel'
     );
 
