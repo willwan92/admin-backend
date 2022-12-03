@@ -75,7 +75,11 @@ class KeyService extends Service {
     }
     const { model, delAction } = this.getKeyType(keytype);
 
-    const object = await ctx.devinitModel[model].findByPk(keyindex);
+    const object = await ctx.devinitModel[model].findOne({
+      where: {
+        keyindex,
+      },
+    });
 
     if (!object) {
       ctx.throw(433, '操作的数据不存在');
