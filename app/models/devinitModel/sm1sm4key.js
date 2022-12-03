@@ -7,7 +7,6 @@ module.exports = (app) => {
     {
       keyindex: {
         type: STRING(32),
-        primaryKey: true,
       },
       keytype: {
         type: STRING(32),
