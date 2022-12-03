@@ -35,9 +35,6 @@ class BaseService extends Service {
         limit,
         offset,
         attributes,
-        order: [
-          ['id', 'DESC']
-        ],
       });
 
       return {
