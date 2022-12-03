@@ -21,6 +21,31 @@ class timerController extends BaseController {
       this.message('时间设置成功');
   }
 
+  /**
+   * @summary 设置时钟服务器
+   * @description
+   * @router post /timer/clock
+   * @request body clockRequest *body
+   * @response 200 baseResponse successed
+   */
+   clock() {
+    const { ctx } = this;
+      const params = ctx.request.body;
+      ctx.validate(ctx.rule.clockRequest, params);
+      ctx.service.timer.clock(params);
+      this.message('时间服务器设置成功');
+  }
+  /**
+   * @summary 时钟服务器查询
+   * @description
+   * @router get /timer/clock
+   * @response 200 clockResponse successed
+   */
+   async query() {
+    const { ctx } = this;
+    const result = await ctx.service.timer.query();
+    this.success(result);
+  }
    /**
    * @summary 获取系统时间
    * @description

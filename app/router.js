@@ -107,8 +107,8 @@ module.exports = (app) => {
   //时间
   router.get('/timer/gettime',controller.timer.gettime);
   router.post('/timer/settime', controller.timer.settime);
- 
-
+  router.post('/timer/clock', controller.timer.clock);
+  router.get('/timer/clock', controller.timer.query);
   // 日志
   router.get('/logs', controller.log.query);
   router.get('/logs/export/:type', controller.log.export);
