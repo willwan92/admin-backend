@@ -68,4 +68,27 @@ module.exports = {
       example: '',
     },
   },
+  importCaRequest: {
+    certfile: {
+      type: 'string',
+      required: true,
+      max: 32,
+      description: 'ca证书名称',
+      example: 'cacert.pem',
+    },
+    keyfile: {
+      type: 'string',
+      required: true,
+      max: 32,
+      description: '证书私钥',
+      example: 'key.pem',
+    },
+    password: {
+      type: 'string',
+      required: true,
+      max: 32,
+      description: 'CA私钥口令',
+      example: 'admin@123',
+    },
+  },
 };

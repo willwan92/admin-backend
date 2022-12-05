@@ -9,7 +9,7 @@ const path = require('path');
  */
 class FileController extends BaseController {
   /**
-   * @summary 上传文件
+   * @summary 上传文件(默认/tmp/下)
    * @description
    * @router post /file/upload
    * @request formData file *file 要上传的文件
@@ -20,6 +20,20 @@ class FileController extends BaseController {
     // 获取文件流
     const fileStream = await ctx.getFileStream();
     await ctx.service.file.upload(fileStream);
+    this.message('文件上传成功');
+  }
+
+  /**
+   * @summary 上传文件（/etc/pki/tmp/下）
+   * @description
+   * @router post /file/upload_pki/
+   * @request formData file *file 要上传的文件
+   * @response 200 baseResponse successed
+   */
+   async upload_pki() {
+    const { ctx } = this;
+    const fileStream = await ctx.getFileStream();
+    await ctx.service.file.upload_pki(fileStream);
     this.message('文件上传成功');
   }
 

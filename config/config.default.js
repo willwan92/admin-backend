@@ -36,24 +36,8 @@ module.exports = (appInfo) => {
     whitelist: [
       // images
       '.pkg',
-      '.jpeg', // image/jpeg
-      '.png', // image/png, image/x-png
-      '.gif', // image/gif
-      '.bmp', // image/bmp
-      '.wbmp', // image/vnd.wap.wbmp
-      '.webp',
-      '.tif',
-      '.psd',
-      // text
-      '.txt',
-      '.svg',
-      '.json',
-      '.xml',
-      // tar
-      '.zip',
-      '.gz',
-      '.tgz',
-      '.gzip',
+      '.pem',
+      '.cer',
       '',
     ],
   };

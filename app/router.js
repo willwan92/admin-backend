@@ -30,6 +30,7 @@ module.exports = (app) => {
   router.post('/file', controller.file.upload);
   router.post('/file/upload/KeyBackupFile', controller.file.uploadKeyBackupFile);
   router.post('/file/upload/PackFile', controller.file.uploadPackFile);
+  router.post('/file/upload_pki', controller.file.upload_pki);
   router.get('/file', controller.file.download);
 
   //系统升级
@@ -96,6 +97,8 @@ module.exports = (app) => {
   router.post('/setpin', controller.initKey.setpin);
   // 证书初始化
   router.post('/initCa', controller.initCa.initCa);
+  router.post('/importCa',controller.initCa.importCa);
+  router.get('/exportCa',controller.initCa.exportCa);
   router.get('/cacert/show',controller.initCa.query);
   router.get('/initprogress',controller.initCa.initprogress);
 
