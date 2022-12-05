@@ -77,12 +77,12 @@ class ServerService extends Service {
     const cmd = '/usr/local/bin/kdmcserver';
     const result = ctx.service.base.execSync(cmd, ['del', id]);
     if (!result.error) {
-      const logmsg = "服务删除成功，服务ip：" + ip;
+      const logmsg = "服务删除成功，服务ip：" + server.ip;
       ctx.service.base.syslog(2, 6, logmsg, '');
       return await server.destroy();
     }
     else{
-      const logmsg = "服务删除失败，服务ip：" + ip;
+      const logmsg = "服务删除失败，服务ip：" + server.ip;
       ctx.service.base.syslog(2, 4, logmsg, '');
     }
   }
