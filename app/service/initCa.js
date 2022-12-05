@@ -35,7 +35,8 @@ class InitKeyService extends Service {
     organization && cmdParams.push('org', organization);
     depart && cmdParams.push('depart', depart);
     email && cmdParams.push('email', email);
-
+    const logmsg = "ca证书初始化证书名称："+name;
+    ctx.service.base.syslog(2, 6, logmsg, '');
     const result = ctx.service.base.execSync(
       '/usr/local/bin/pkism2',
       cmdParams

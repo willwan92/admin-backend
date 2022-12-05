@@ -22,7 +22,12 @@ class SysrouteService extends Service {
     const args = ['add', ip, mask, gwip, metric];
     const result = ctx.service.base.execSync(cmd, args);
     if (result.error) {
+        ctx.service.base.syslog(2, 4, '路由添加失败！', '');
         await router.destory();
+      }
+      else{
+        const logmsg = "路由添加成功，目的地址：" + ip + ",下一条地址：" + gwip;
+        ctx.service.base.syslog(2, 6, logmsg, '');
       }
   }
 
@@ -62,7 +67,13 @@ class SysrouteService extends Service {
 
     const result = ctx.service.base.execSync('sysroute', ['del', object.ip,object.mask,object.gwip,object.metric]);
     if (!result.error) {
+      const logmsg = "路由删除成功，目的地址：" + object.ip + ",下一条地址：" + object.gwip;
+      ctx.service.base.syslog(2, 6, logmsg, '');
       return await object.destroy();
+    }
+    else{
+      const logmsg = "路由删除失败，目的地址：" + object.ip + ",下一条地址：" + object.gwip;
+      ctx.service.base.syslog(2, 4, logmsg, '');
     }
   }
   
