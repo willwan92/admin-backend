@@ -31,9 +31,7 @@ class timerService extends Service {
     const rows = await ctx.configModel.Timer.findAll({
         attrs,
       });
-      return {
-        data: rows,
-      };
+     return rows[0];
   }
 }
 
