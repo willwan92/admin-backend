@@ -7,6 +7,8 @@ class IfaddrService extends Service {
     const { ifname, ip, netmask, ping, admin } = params;
     const cmd = 'ifaddr';
     const args = ['add', ifname,ip,netmask,'ping',ping,'admin',admin];
+    const logmsg = "添加接口地址，接口名称："+ifname + ";接口地址:" + ip;
+    ctx.service.base.syslog(2, 6, logmsg, '');
     return ctx.service.base.execSync(cmd, args);
   }
   async query(query) {
