@@ -64,8 +64,8 @@ module.exports = {
     type: {
       type: 'string',
       required: true,
-      enum: ['ecc', 'all'],
-      description: '备份的密钥类型。ecc为备份非对称密钥；all为备份对称和非对称密钥',
+      enum: ['ecc', 'sm1', 'all'],
+      description: '备份的密钥类型。ecc为备份非对称密钥；sm1为对称密钥；all为备份对称和非对称密钥',
       example: 'ecc',
     },
     password: {
