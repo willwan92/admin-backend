@@ -97,10 +97,18 @@ module.exports = (app) => {
   router.post('/setpin', controller.initKey.setpin);
   // 证书初始化
   router.post('/initCa', controller.initCa.initCa);
+  router.post('/createCert', controller.initCa.createCert);
   router.post('/importCa',controller.initCa.importCa);
   router.get('/exportCa',controller.initCa.exportCa);
+  router.get('/exportCrl',controller.initCa.exportCrl);
+  router.get('/exportCert/:name',controller.initCa.exportCert);
   router.get('/cacert/show',controller.initCa.query);
+  router.get('/sm2cert/show',controller.initCa.sm2query);
+  router.get('/crlcert/show',controller.initCa.crlquery);
   router.get('/initprogress',controller.initCa.initprogress);
+  router.delete('/delcert/:name', controller.initCa.del);
+  router.post('/revoke', controller.initCa.revoke);
+  router.post('/releasecrl',controller.initCa.releasecrl);
 
   // 首页
   router.get('/home/systemMonitor', jwt, controller.home.systemMonitor);
