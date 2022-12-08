@@ -17,6 +17,10 @@ module.exports = (app) => {
   router.post('/reboots/reboot', controller.reboots.reboot.reboot);
   router.post('/reboots/halt', controller.reboots.reboot.halt);
 
+  // web超时时间
+  router.get('/timeout', controller.timeout.get);
+  router.put('/timeout', controller.timeout.update);
+
   // 用户
   router.post('/users', controller.user.create);
   router.get('/users/:id', jwt, refreshToken, controller.user.get);
