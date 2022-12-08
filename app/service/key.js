@@ -41,7 +41,8 @@ class KeyService extends Service {
     } else {
       args.push(keyindex);
     }
-
+    const logmsg = "生成加密密钥，密钥类型:"+keytype + ";密钥索引:" + keyindex;
+    ctx.service.base.syslog(2, 6, logmsg, '');
     const cmd = 'keymng';
     return ctx.service.base.execSync(cmd, args);
   }
@@ -87,7 +88,13 @@ class KeyService extends Service {
 
     const result = ctx.service.base.execSync('keymng', [delAction, keyindex]);
     if (!result.error) {
+      const logmsg = "删除密钥成功:密钥类型"+keytype + ";密钥索引:" + keyindex;
+      ctx.service.base.syslog(2, 6, logmsg, '');
       return await object.destroy();
+    }
+    else{
+      const logmsg = "删除密钥失败:密钥类型"+keytype + ";密钥索引:" + keyindex;
+      ctx.service.base.syslog(2, 4, logmsg, '');
     }
   }
 }

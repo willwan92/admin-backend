@@ -19,6 +19,8 @@ class AdminipService extends Service {
 
     const cmd = 'adminhost';
     const args = ['add', ip, comment || ''];
+    const logmsg = "添加管理主机，管理主机IP："+ ip;
+    ctx.service.base.syslog(2, 6, logmsg, '');
     return ctx.service.base.execSync(cmd, args);
   }
 
@@ -36,7 +38,8 @@ class AdminipService extends Service {
     const cmd = 'adminhost';
     const { comment } = params;
     const args = ['set', object.ip, comment || ''];
-
+    const logmsg = "修改管理主机，管理主机IP："+ object.ip + ";备注:" + comment;
+    ctx.service.base.syslog(2, 6, logmsg, '');
     return ctx.service.base.execSync(cmd, args);
   }
 
@@ -73,7 +76,8 @@ class AdminipService extends Service {
     if (!object) {
       ctx.throw(433, '操作的数据不存在');
     }
-
+    const logmsg = "删除管理主机，管理主机IP："+ object.ip;
+    ctx.service.base.syslog(2, 6, logmsg, '');
     const result = ctx.service.base.execSync('adminhost', ['del', object.ip]);
     if (!result.error) {
       return await object.destroy();

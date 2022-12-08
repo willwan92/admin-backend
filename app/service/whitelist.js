@@ -8,7 +8,14 @@ class WhitelistService extends Service {
     const { type, ip, port, protocol, comment } = params;
     const cmd = 'whitelist';
     const args = ['add', type, ip, port, protocol, comment || ''];
-    return ctx.service.base.execSync(cmd, args);
+    const result = ctx.service.base.execSync(cmd, args);
+    if (!result.error) {
+      ctx.service.base.syslog(2, 6, '添加白名单成功', '');
+      return result;
+    }
+    else{
+      ctx.service.base.syslog(2, 4, '添加白名单失败', '');
+    }
   }
 
   async update(id, params) {
@@ -25,8 +32,15 @@ class WhitelistService extends Service {
     const cmd = 'whitelist';
     const { type, ip, port, protocol, comment } = params;
     const args = ['set', id, type, ip, port, protocol, comment || ''];
+    const result = ctx.service.base.execSync(cmd, args);
+    if (!result.error) {
+      ctx.service.base.syslog(2, 6, '修改白名单成功', '');
+      return result;
+    }
+    else{
+      ctx.service.base.syslog(2, 4, '修改白名单失败', '');
+    }
 
-    return ctx.service.base.execSync(cmd, args);
   }
 
   async query(query) {
@@ -66,7 +80,11 @@ class WhitelistService extends Service {
 
     const result = ctx.service.base.execSync('whitelist', ['del', id]);
     if (!result.error) {
+      ctx.service.base.syslog(2, 6, '删除白名单成功', '');
       return await object.destroy();
+    }
+    else{
+      ctx.service.base.syslog(2, 4, '删除白名单失败', '');
     }
   }
 }

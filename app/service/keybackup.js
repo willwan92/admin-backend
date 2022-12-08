@@ -13,6 +13,7 @@ class KeybackupService extends Service {
         password,
       ]);
     } catch (error) {
+      ctx.service.base.syslog(2, 4, '管理卡登陆错误', '');
       ctx.throw(455, `管理卡登录错误（detail: ${error}）`);
     }
   }
@@ -27,6 +28,7 @@ class KeybackupService extends Service {
         password,
       ]);
     } catch (error) {
+      ctx.service.base.syslog(2, 4, '备份类型错误错误', '');
       ctx.throw(455, `选择备份类型失败（detail: ${error}）`);
     }
   }
@@ -41,6 +43,7 @@ class KeybackupService extends Service {
         password,
       ]);
     } catch (error) {
+      ctx.service.base.syslog(2, 4, '管理卡备份错误', '');
       ctx.throw(455, `管理卡备份错误（detail: ${error}）`);
     }
   }
@@ -55,6 +58,7 @@ class KeybackupService extends Service {
         password,
       ]);
     } catch (error) {
+      ctx.service.base.syslog(2, 4, '密钥恢复错误', '');
       ctx.throw(455, `密钥恢复错误（detail: ${error}）`);
     }
   }
@@ -69,6 +73,7 @@ class KeybackupService extends Service {
         password,
       ]);
     } catch (error) {
+      ctx.service.base.syslog(2, 4, '管理卡恢复错误', '');
       ctx.throw(455, `管理卡恢复错误（detail: ${error}）`);
     }
   }

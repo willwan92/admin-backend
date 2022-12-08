@@ -8,7 +8,14 @@ class timerService extends Service {
     const { date, time } = params;
     const cmd = '/usr/local/bin/sys_time';
     const args = ['set',date,time];
-    return ctx.service.base.execSync(cmd, args);
+    const result = ctx.service.base.execSync(cmd, args);
+    if (!result.error) {
+        ctx.service.base.syslog(2, 6, '修改系统时间成功', '');
+        return result;
+      }
+      else{
+        ctx.service.base.syslog(2, 4, '修改系统时间失败', '');
+      }
   }
   async clock(data) {
     const { ctx } = this;
@@ -21,7 +28,11 @@ class timerService extends Service {
     const args = ['clock',server,period,start];
     const result = ctx.service.base.execSync(cmd, args);
     if (!result.error) {
+        ctx.service.base.syslog(2, 6, '时钟服务器设置成功', '');
         return await object.update(data);
+      }
+      else{
+        ctx.service.base.syslog(2, 4, '时钟服务器设置失败', '');
       }
   }
 
@@ -31,9 +42,7 @@ class timerService extends Service {
     const rows = await ctx.configModel.Timer.findAll({
         attrs,
       });
-      return {
-        data: rows,
-      };
+     return rows[0];
   }
 }
 
