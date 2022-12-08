@@ -38,6 +38,11 @@ class AuthService extends Service {
     }
 
     // 生成token
+    const timeout = await ctx.configModel.Timeout.findOne({
+      where: {
+        id: 1,
+      },
+    });
     const token = app.jwt.sign(
       {
         data: {
@@ -45,7 +50,7 @@ class AuthService extends Service {
           id: user.id,
         },
         // 设置过期时间这里要使用 exp ，使用 expiresIn 不生效
-        exp: Math.floor(Date.now() / 1000) + 3600 * 4,
+        exp: Math.floor(Date.now() / 1000) + 60 * timeout,
       },
       app.jwt.secret
     );

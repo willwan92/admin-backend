@@ -6,6 +6,7 @@
 module.exports = (app) => {
   const { router, controller } = app;
   const jwt = app.middleware.jwt({ app });
+  const refreshToken = app.middleware.refreshToken({ app });
 
   // 登录认证
   router.post('/auth/login', controller.auth.login);
@@ -18,7 +19,7 @@ module.exports = (app) => {
 
   // 用户
   router.post('/users', controller.user.create);
-  router.get('/users/:id', jwt, controller.user.get);
+  router.get('/users/:id', jwt, refreshToken, controller.user.get);
   router.delete('/users/:id', controller.user.del);
   router.put('/users/:id', controller.user.update);
   router.patch('/users/:id/status', controller.user.updateStatus);
@@ -100,7 +101,7 @@ module.exports = (app) => {
   router.get('/initprogress',controller.initCa.initprogress);
 
   // 首页
-  router.get('/home/systemMonitor', jwt, controller.home.systemMonitor);
+  router.get('/home/systemMonitor', controller.home.systemMonitor);
   router.get('/home/productInfo', controller.home.productInfo);
   router.get('/home/interfaceMonitor', controller.home.interfaceMonitor);
   router.get('/home/algTest', controller.home.algTest);

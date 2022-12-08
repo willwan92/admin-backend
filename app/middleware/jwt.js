@@ -7,7 +7,7 @@
 // app: 当前应用 Application 的实例。
 
 module.exports = ({ app }) => {
-  // token验证函数(jwt插件本身就带有验证函数可以直接使用，这里为了了解中间件的使用自己实现的)
+  // token验证函数
   // 如果token正确，执行下一步
   // 否则，返回登录过期，请重启新登录
   return async function verify(ctx, next) {
@@ -22,7 +22,8 @@ module.exports = ({ app }) => {
         };
         return ctx.body;
       }
-      const ret = await app.jwt.verify(token, app.config.jwt.secret);
+
+      await app.jwt.verify(token, app.config.jwt.secret);
       await next();
     } catch (error) {
       if (error.name === 'TokenExpiredError') {
@@ -32,7 +33,6 @@ module.exports = ({ app }) => {
         };
         return ctx.body;
       }
-      console.log('token验证错误', error);
     }
   };
 };
