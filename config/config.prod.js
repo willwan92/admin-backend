@@ -12,7 +12,7 @@ module.exports = () => {
   config.cluster = {
     listen: {
       port: 7002,
-      hostname: '127.0.0.1',
+      hostname: '100.100.100.251',
     },
   };
 
