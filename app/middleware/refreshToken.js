@@ -7,11 +7,7 @@ module.exports = ({ app }) => {
       const token = ctx.request.header.authorization;
       if (token) {
         const tokenData = await app.jwt.verify(token, app.config.jwt.secret);
-        const timeout = await ctx.configModel.Timeout.findOne({
-          where: {
-            id: 1,
-          },
-        });
+        const { timeout } = await ctx.configModel.Timeout.findByPk(1);
         const newToken = app.jwt.sign(
           {
             data: tokenData.data,
@@ -20,11 +16,12 @@ module.exports = ({ app }) => {
           app.jwt.secret
         );
 
-        ctx.cookies.set('token', newToken);
+        ctx.cookies.set('TOKEN', newToken, { httpOnly: false });
       }
 
       await next();
     } catch (error) {
+      console.log(error);
       await next();
     }
   };
