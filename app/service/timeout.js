@@ -13,7 +13,7 @@ class TimeoutService extends Service {
     }
 
     return {
-      timout: object.timout,
+      timeout: object.timeout,
     };
   }
 

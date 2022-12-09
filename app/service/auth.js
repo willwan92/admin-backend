@@ -38,7 +38,7 @@ class AuthService extends Service {
     }
 
     // 生成token
-    const timeout = await ctx.configModel.Timeout.findOne({
+    const { timeout } = await ctx.configModel.Timeout.findOne({
       where: {
         id: 1,
       },
@@ -75,6 +75,7 @@ class AuthService extends Service {
     const { ctx } = this;
     const { username } = params;
     ctx.session.username = null;
+    ctx.cookies.set('token', null);
     ctx.service.base.syslog(2, 4, '退出登录', username);
   }
 
