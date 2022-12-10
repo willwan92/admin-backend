@@ -6,16 +6,22 @@
 // options: 中间件的配置项，框架会将 app.config[${middlewareName}] 传递进来。
 // app: 当前应用 Application 的实例。
 
-module.exports = ({ app }) => {
+module.exports = (option, app) => {
   // token验证函数
   // 如果token正确，执行下一步
-  // 否则，返回登录过期，请重启新登录
-  return async function verify(ctx, next) {
+  // 否则，返回未登录或者登录过期，请重启新登录
+  return async (ctx, next) => {
+    // 白名单接口：不需要验证token
+    const whiteList = ['/auth/login', '/auth/captcha'];
     try {
-      let token = ctx.request.header.authorization;
-      if (token) {
-        token = token.replace('Bearer ', '');
-      } else {
+      const token = ctx.request.header.authorization;
+      const path = ctx.request.path;
+
+      if (whiteList.includes(path)) {
+        return await next();
+      }
+
+      if (!token) {
         ctx.body = {
           code: 401,
           message: '用户未登录，请登录',

@@ -104,7 +104,7 @@ module.exports = (appInfo) => {
   config.proxy = true;
 
   // add your middleware config here
-  config.middleware = ['errorHandler'];
+  config.middleware = ['auth', 'permission', 'refreshToken', 'errorHandler'];
 
   // add your user config here
   const userConfig = {
