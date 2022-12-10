@@ -37,7 +37,7 @@ const menus = [
   },
   {
     menu: '用户管理',
-    roles: ['system'],
+    roles: ['system', 'default'],
     paths: ['^/users'],
   },
   {
@@ -157,6 +157,8 @@ module.exports = (option, app) => {
         user = await ctx.model.User.findByPk(data.id);
       }
       const role = user && user.role;
+      
+      console.log(role, path, hasPermission(menus, role, path));
       if (hasPermission(menus, role, path)) {
         await next();
       } else {
@@ -167,6 +169,7 @@ module.exports = (option, app) => {
         return ctx.body;
       }
     } catch (error) {
+      console.log(error);
       ctx.body = {
         code: 403,
         message: '用户没有此权限',
