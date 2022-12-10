@@ -37,7 +37,7 @@ const menus = [
   },
   {
     menu: '用户管理',
-    roles: ['system'],
+    roles: ['system', 'default'],
     paths: ['^/users'],
   },
   {
@@ -156,6 +156,7 @@ module.exports = (option, app) => {
         const { data } = await app.jwt.verify(token, app.config.jwt.secret);
         user = await ctx.model.User.findByPk(data.id);
       }
+
       const role = user && user.role;
       if (hasPermission(menus, role, path)) {
         await next();
