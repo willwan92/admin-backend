@@ -91,6 +91,29 @@ module.exports = {
       example: 'admin@123',
     },
   },
+  importSm2Request: {
+    name: {
+      type: 'string',
+      required: true,
+      max: 32,
+      description: '证书名称',
+      example: 'sm2cert',
+    },
+    reqfile: {
+      type: 'string',
+      required: true,
+      max: 32,
+      description: '请求文件',
+      example: 'req.pem',
+    },
+    password: {
+      type: 'string',
+      required: true,
+      max: 32,
+      description: 'CA私钥口令',
+      example: 'admin@123',
+    },
+  },
   crlRequest: {
     name: {
       type: 'string',

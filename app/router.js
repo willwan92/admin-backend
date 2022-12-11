@@ -102,6 +102,7 @@ module.exports = (app) => {
   router.post('/initCa', controller.initCa.initCa);
   router.post('/createCert', controller.initCa.createCert);
   router.post('/importCa',controller.initCa.importCa);
+  router.post('/importSm2',controller.initCa.importSm2);
   router.get('/exportCa',controller.initCa.exportCa);
   router.get('/exportCrl',controller.initCa.exportCrl);
   router.get('/exportCert/:name',controller.initCa.exportCert);

@@ -132,6 +132,42 @@ class InitKeyService extends Service {
       ctx.service.base.syslog(2, 6, logmsg, '');
     }
   }
+  //导入sm2证书
+  importSm2(params) {
+    const { ctx } = this;
+    const {
+      name,
+      reqfile,
+      password,
+    } = params;
+
+    const cmdParams = [
+      'import',
+      'certreq',
+      'name',
+      name,
+      'format',
+      'PEM',
+      'reqfile',
+      reqfile,
+      'capasswd',
+      password,
+    ];
+    const result = ctx.service.base.execSync(
+      '/usr/local/bin/pkism2',
+      cmdParams
+    );
+
+    if (result.status !== 0) {
+      const logmsg = "sm2证书导入失败，证书名称："+certfile;
+      ctx.service.base.syslog(2, 4, logmsg, '');
+      this.ctx.throw(455, `证书倒入失败（detail：${result.stdout || ''}）`);
+    }
+    else{
+      const logmsg = "sm2证书导入成功，证书名称："+certfile;
+      ctx.service.base.syslog(2, 6, logmsg, '');
+    }
+  }
 
   exportCa() {
     const { ctx } = this;

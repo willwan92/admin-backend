@@ -50,6 +50,21 @@ class InitCaController extends BaseController {
       ctx.service.initCa.importCa(params);
       this.message('证书导入成功');
     }
+
+     /**
+   * @summary 导入sm2证书
+   * @description
+   * @router post /importSm2
+   * @request body importSm2Request *body
+   * @response 200 baseResponse successed
+   */
+    importSm2() {
+      const { ctx } = this;
+      const params = ctx.request.body;
+      ctx.validate(ctx.rule.importSm2Request, params);
+      ctx.service.initCa.importSm2(params);
+      this.message('证书导入成功');
+    }
    /**
    * @summary 导出ca证书
    * @description
