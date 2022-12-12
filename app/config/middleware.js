@@ -1,7 +1,7 @@
 'use strict';
 
 // 接口白名单，不需要登录就可以调用
-exports.whiteList = ['^/swagger', '/auth/login', '/auth/captcha','^/exportC'];
+exports.whiteList = ['^/swagger', '/auth/login', '/auth/captcha','^/exportC','/logs/export'];
 
 /**
  * menus：菜单或者功能的接口权限配置。
@@ -76,7 +76,7 @@ exports.menus = [
         menu: '时间管理',
         roles: ['system'],
         apis: [
-          { path: '^/timeout', methods: ['get', 'put'] },
+          { path: '^/timout', methods: ['get', 'put'] },
           { path: '^/timer', methods: ['get', 'put'] },
         ],
       },
