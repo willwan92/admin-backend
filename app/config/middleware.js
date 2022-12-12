@@ -223,6 +223,6 @@ exports.menus = [
   {
     menu: '上传文件',
     roles: ['system','business'],
-    apis: [{ path: '^/file/upload/', methods: ['all'] }],
+    apis: [{ path: '^/file/upload', methods: ['all'] }],
   },
 ];
