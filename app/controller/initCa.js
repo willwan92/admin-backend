@@ -74,7 +74,7 @@ class InitCaController extends BaseController {
     exportCa() {
       const { ctx } = this;
       ctx.service.initCa.exportCa();
-      this.message('导出成功');
+      //this.message('导出成功');
     }
 
     /**
@@ -86,7 +86,7 @@ class InitCaController extends BaseController {
      exportCrl() {
       const { ctx } = this;
       ctx.service.initCa.exportCrl();
-      this.message('导出成功');
+      //this.message('导出成功');
     }
 
     /**
@@ -100,7 +100,7 @@ class InitCaController extends BaseController {
       const { ctx } = this;
       const Params = ctx.request.query;
       ctx.service.initCa.exportCert(Params);
-      this.message('导出成功');
+      //this.message('导出成功');
     }
   /**
    * @summary CA证书信息

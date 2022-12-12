@@ -39,7 +39,7 @@ class LogController extends BaseController {
       //ctx.validate(ctx.rule.logExportRequest);
       const logParams = ctx.request.query;
       ctx.service.log.export(logParams);
-      this.message('导出成功');
+      //this.message('导出成功');
     }
 }
 
