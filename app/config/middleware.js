@@ -169,7 +169,7 @@ exports.menus = [
       },
       {
         menu: '根证书',
-        roles: ['business'],
+        roles: ['business','default'],
         apis: [{ path: '^/cacert', methods: ['all'] }],
 
       },
