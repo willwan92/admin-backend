@@ -76,8 +76,8 @@ exports.menus = [
         menu: '时间管理',
         roles: ['system'],
         apis: [
-          { path: '^/timout', methods: ['get', 'put'] },
-          { path: '^/timer', methods: ['get', 'put'] },
+          { path: '^/timout', methods: ['all'] },
+          { path: '^/timer', methods: ['all'] },
         ],
       },
       {
