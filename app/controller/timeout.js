@@ -8,7 +8,7 @@ class TimeoutController extends BaseController {
   /**
    * @summary 获取web超时间
    * @description
-   * @router get /timout
+   * @router get /timeout
    * @response 200 timeoutConfResponse successed
    */
   async get() {
@@ -20,7 +20,7 @@ class TimeoutController extends BaseController {
   /**
    * @summary 修改web超时间
    * @description
-   * @router put /timout
+   * @router put /timeout
    * @request body updateTimeoutRequest *body
    * @response 200 baseResponse successed
    */
