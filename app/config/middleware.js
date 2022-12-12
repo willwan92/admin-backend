@@ -38,14 +38,18 @@ exports.menus = [
     apis: [{ path: '^/setpin', methods: ['all'] }],
   },
   {
+    menu: '接口信息',
+    roles: ['all'],
+    apis: [{ path: '^/interface', methods: ['all'] }],
+  },
+  {
     menu: '网络配置',
     children: [
       {
         menu: '接口IP',
         roles: ['system'],
         apis: [
-          { path: '^/ifaddrs', methods: ['all'] },
-          { path: '^/interface', methods: ['all'] },
+          { path: '^/ifaddrs', methods: ['all'] }
         ],
       },
       {
