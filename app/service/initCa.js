@@ -195,7 +195,7 @@ class InitKeyService extends Service {
     this.ctx.set('Content-Type', 'application/octet-stream');
     this.ctx.body = fs.createReadStream(path.join(DirPath, filename));
   }
-
+  //导出sm2证书
   exportCert(params) {
     const { ctx } = this;
     const cmdParams = ['export', 'cert',  params.name, 'format', 'PEM'];
@@ -222,6 +222,7 @@ class InitKeyService extends Service {
     this.ctx.set('Content-Type', 'application/octet-stream');
     this.ctx.body = fs.createReadStream(path.join(DirPath, filename));
   }
+  //导出吊销列表
   exportCrl() {
     const { ctx } = this;
     const cmdParams = ['export', 'crl', 'format', 'PEM'];
