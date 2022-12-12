@@ -127,7 +127,7 @@ exports.menus = [
     children: [
       {
         menu: '证书初始化',
-        roles: ['business'],
+        roles: ['business','default'],
         apis: [{ path: '^/initCa', methods: ['all'] }],
 
       },
