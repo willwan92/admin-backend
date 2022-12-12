@@ -101,7 +101,7 @@ exports.menus = [
   },
   {
     menu: '管理卡管理',
-    roles: ['business'],
+    roles: ['business','default'],
     apis: [{ path: '^/mngcard', methods: ['all'] }],
   },
   {
