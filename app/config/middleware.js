@@ -28,12 +28,25 @@ exports.menus = [
     apis: [{ path: '^/home', methods: ['all'] }],
   },
   {
+    menu: '设备密钥初始化',
+    roles: ['default', 'business'],
+    apis: [{ path: '^/initKey', methods: ['all'] }],
+  },
+  {
+    menu: 'ECC密钥访问控制码',
+    roles: ['business'],
+    apis: [{ path: '^/setpin', methods: ['all'] }],
+  },
+  {
     menu: '网络配置',
     children: [
       {
         menu: '接口IP',
         roles: ['system'],
-        apis: [{ path: '^/interface', methods: ['all'] }],
+        apis: [
+          { path: '^/ifaddrs', methods: ['all'] },
+          { path: '^/interface', methods: ['all'] },
+        ],
       },
       {
         menu: '系统路由',
@@ -81,7 +94,7 @@ exports.menus = [
         roles: ['system'],
         apis: [
           { path: '^/sysupdates', methods: ['all'] },
-          { path: '^/file/upload_pki', methods: ['all'] },
+          { path: '^/file/upload/PackFile', methods: ['all'] },
         ],
       },
     ],
@@ -104,15 +117,96 @@ exports.menus = [
   {
     menu: '密钥管理',
     roles: ['business'],
-    apis: [{ path: '^/keys', methods: ['all'] }],
+    apis: [
+      { path: '^/keys', methods: ['all'] },
+      { path: '^/keybackup', methods: ['all'] },
+    ],
   },
   {
     menu: '证书管理',
     children: [
       {
+        menu: '证书初始化',
+        roles: ['business'],
+        apis: [{ path: '^/initCa', methods: ['all'] }],
+
+      },
+      {
+        menu: '本地生成私钥和证书',
+        roles: ['business'],
+        apis: [{ path: '^/createCert', methods: ['all'] }],
+
+      },
+      {
+        menu: '导入ca证书',
+        roles: ['business'],
+        apis: [{ path: '^/importCa', methods: ['all'] }],
+
+      },
+      {
+        menu: '导入sm2证书',
+        roles: ['business'],
+        apis: [{ path: '^/importSm2', methods: ['all'] }],
+
+      },
+      {
+        menu: '导出ca证书',
+        roles: ['business'],
+        apis: [{ path: '^/exportCa', methods: ['all'] }],
+
+      },
+      {
+        menu: '导出吊销列表',
+        roles: ['business'],
+        apis: [{ path: '^/exportCrl', methods: ['all'] }],
+
+      },
+      {
+        menu: '导出sm2证书',
+        roles: ['business'],
+        apis: [{ path: '^/exportCert', methods: ['all'] }],
+
+      },
+      {
         menu: '根证书',
         roles: ['business'],
         apis: [{ path: '^/cacert', methods: ['all'] }],
+
+      },
+      {
+        menu: 'sm2证书列表',
+        roles: ['business'],
+        apis: [{ path: '^/sm2cert/show', methods: ['all'] }],
+
+      },
+      {
+        menu: '删除证书',
+        roles: ['business'],
+        apis: [{ path: '^/delcert', methods: ['all'] }],
+
+      },
+      {
+        menu: '吊销证书',
+        roles: ['business'],
+        apis: [{ path: '^/revoke', methods: ['all'] }],
+
+      },
+      {
+        menu: '发布吊销列表',
+        roles: ['business'],
+        apis: [{ path: '^/releasecrl', methods: ['all'] }],
+
+      },
+      {
+        menu: '吊销列表展示',
+        roles: ['business'],
+        apis: [{ path: '^/crlcert', methods: ['all'] }],
+
+      },
+      {
+        menu: '初始化进度',
+        roles: ['all'],
+        apis: [{ path: '^/initprogress', methods: ['all'] }],
 
       },
     ],
