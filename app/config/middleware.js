@@ -220,4 +220,9 @@ exports.menus = [
     roles: ['audit'],
     apis: [{ path: '^/logs', methods: ['all'] }],
   },
+  {
+    menu: '上传文件',
+    roles: ['system','business'],
+    apis: [{ path: '^/file/upload/', methods: ['all'] }],
+  },
 ];
