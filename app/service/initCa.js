@@ -198,7 +198,7 @@ class InitKeyService extends Service {
 
   exportCert(params) {
     const { ctx } = this;
-    const cmdParams = ['export', 'cert',  params.name, 'formate', 'PEM'];
+    const cmdParams = ['export', 'cert',  params.name, 'format', 'PEM'];
     const result = ctx.service.base.execSync('/usr/local/bin/pkism2',cmdParams);
     if (result.status !== 0) {
       //ctx.service.base.syslog(2, 4, 'ca证书导出失败！', '');
