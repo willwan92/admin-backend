@@ -159,12 +159,12 @@ class InitKeyService extends Service {
     );
 
     if (result.status !== 0) {
-      const logmsg = "sm2证书导入失败，证书名称："+certfile;
+      const logmsg = "sm2证书导入失败，证书名称："+name;
       ctx.service.base.syslog(2, 4, logmsg, '');
       this.ctx.throw(455, `证书倒入失败（detail：${result.stdout || ''}）`);
     }
     else{
-      const logmsg = "sm2证书导入成功，证书名称："+certfile;
+      const logmsg = "sm2证书导入成功，证书名称："+name;
       ctx.service.base.syslog(2, 6, logmsg, '');
     }
   }
