@@ -38,6 +38,8 @@ module.exports = (appInfo) => {
       '.pkg',
       '.pem',
       '.cer',
+      '.key',
+      '.req',
       '',
     ],
   };

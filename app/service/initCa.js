@@ -194,6 +194,8 @@ class InitKeyService extends Service {
     this.ctx.attachment(filename);
     this.ctx.set('Content-Type', 'application/octet-stream');
     this.ctx.body = fs.createReadStream(path.join(DirPath, filename));
+    const cmdrm = ['-rf', '/tmp/download/cacert.cer'];
+    ctx.service.base.execSync('/usr/bin/rm',cmdrm);
   }
   //导出sm2证书
   exportCert(params) {
