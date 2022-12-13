@@ -223,6 +223,9 @@ class InitKeyService extends Service {
     this.ctx.attachment(filename);
     this.ctx.set('Content-Type', 'application/octet-stream');
     this.ctx.body = fs.createReadStream(path.join(DirPath, filename));
+    const rmfilename = '/tmp/download/' + filename;
+    const cmdrm = ['-rf', rmfilename];
+    ctx.service.base.execSync('/usr/bin/rm',cmdrm);
   }
   //导出吊销列表
   exportCrl() {
@@ -249,6 +252,8 @@ class InitKeyService extends Service {
     this.ctx.attachment(filename);
     this.ctx.set('Content-Type', 'application/octet-stream');
     this.ctx.body = fs.createReadStream(path.join(DirPath, filename));
+    const cmdrm = ['-rf', '/tmp/download/cacert.crl'];
+    ctx.service.base.execSync('/usr/bin/rm',cmdrm);
   }
   async query(query) {
     const { ctx } = this;
