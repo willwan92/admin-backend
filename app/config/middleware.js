@@ -225,4 +225,9 @@ exports.menus = [
     roles: ['system','business'],
     apis: [{ path: '^/file/upload', methods: ['all'] }],
   },
+  {
+    menu: '下载文件',
+    roles: ['business'],
+    apis: [{ path: '^/file/download', methods: ['all'] }],
+  },
 ];
