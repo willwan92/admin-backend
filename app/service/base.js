@@ -255,8 +255,8 @@ class BaseService extends Service {
     const captcha = svgCaptcha.create({
       size: 4,
       noise: 2,
-      color: true,
-      background: '#ccc',
+      color: false,
+      background: '#999',
     });
 
     return captcha;
