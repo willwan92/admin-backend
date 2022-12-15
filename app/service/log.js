@@ -44,7 +44,7 @@ class LogService extends Service {
     );
 
   }
-
+  //导出日志接口
   export(logParams) {
     const { ctx } = this;
     const { type } = 0;
