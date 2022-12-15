@@ -47,9 +47,11 @@ class LogService extends Service {
 
   export(logParams) {
     const { ctx } = this;
+    const { type } = 0;
     //const { type } = ctx.request.body;
+    logParams.type && (type = logParams.type);
     const result = ctx.service.base.execSync('/usr/local/bin/logexport', [
-      logParams.type,
+      logParams.type,logParams.startDate,logParams.endDate
     ]);
     if (result.status !== 0) {
       this.ctx.throw(

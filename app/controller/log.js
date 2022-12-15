@@ -32,6 +32,8 @@ class LogController extends BaseController {
    * @description
    * @router get /logs/export
    * @request query integer type 日志类型('0所有日志，1规则日志，2设备管理，3设备状态，13HA日志，200其他')
+   * @request query string startDate 开始时间
+   * @request query string endDate 结束时间
    * @response 200 baseResponse successed
    */
     export() {
