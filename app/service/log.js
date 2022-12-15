@@ -44,12 +44,12 @@ class LogService extends Service {
     );
 
   }
-
+  //导出日志接口
   export(logParams) {
     const { ctx } = this;
-    //const { type } = ctx.request.body;
+    const type = logParams.type || 0;
     const result = ctx.service.base.execSync('/usr/local/bin/logexport', [
-      logParams.type,
+      type,logParams.startDate,logParams.endDate
     ]);
     if (result.status !== 0) {
       this.ctx.throw(
@@ -68,8 +68,6 @@ class LogService extends Service {
     this.ctx.attachment(filename);
     this.ctx.set('Content-Type', 'application/octet-stream');
     this.ctx.body = fs.createReadStream(path.join(DirPath, filename));
-
-
   }
 }
 
